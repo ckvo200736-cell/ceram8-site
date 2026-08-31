@@ -431,8 +431,8 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
     display: none;
     position: absolute;
     top: 100%;
-    left: calc(-1 * var(--gap));
-    right: calc(-1 * var(--gap));
+    left: 0;
+    right: 0;
     flex-direction: column;
     gap: 0;
     padding: 4px var(--gap) 10px;
@@ -454,6 +454,32 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   .nav-toggle { display: none; }
   .grid-gallery { grid-template-columns: repeat(3, 1fr); }
   .steps { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Галерея на телефоне/планшете — горизонтальная лента со свайпом.
+   На десктопе (>=1000px) остаётся сетка. */
+@media (max-width: 999.98px) {
+  .grid-gallery {
+    display: flex;
+    grid-auto-flow: initial;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    margin-inline: calc(-1 * var(--gap));
+    padding: 2px var(--gap) 12px;
+    scroll-padding-inline: var(--gap);
+    overscroll-behavior-x: contain;
+  }
+  .grid-gallery .tile {
+    flex: 0 0 78%;
+    max-width: 340px;
+    scroll-snap-align: start;
+  }
+  .grid-gallery::-webkit-scrollbar { height: 5px; }
+  .grid-gallery::-webkit-scrollbar-track { background: transparent; }
+  .grid-gallery::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+  .gallery__hint::before { content: "Листайте вбок. "; }
 }
 
 /* ==========================================================================
