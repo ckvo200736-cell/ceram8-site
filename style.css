@@ -299,6 +299,24 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 /* ---------- Услуга «Обжиг» ---------- */
 .firing { background: var(--surface); }
 .firing__text { max-width: 640px; }
+
+/* ---------- Отзывы ---------- */
+.reviews__grid { display: grid; gap: var(--gap); margin-bottom: clamp(24px, 5vw, 40px); }
+.review {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(20px, 4vw, 28px);
+}
+.review__stars { color: var(--accent); letter-spacing: 2px; font-size: .95rem; }
+.review blockquote { margin: 0; font-size: 1.02rem; line-height: 1.55; }
+.review figcaption { display: flex; flex-direction: column; gap: 2px; margin-top: auto; }
+.review__author { font-weight: 700; }
+.review__meta { font-size: .82rem; color: var(--muted); }
 .ticks { list-style: none; padding: 0; margin: 0 0 1.6em; }
 .ticks li { position: relative; padding-left: 28px; margin-bottom: .6em; }
 .ticks li::before {
@@ -419,6 +437,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 @media (min-width: 700px) {
   .grid-gallery { grid-template-columns: repeat(2, 1fr); }
   .clients__grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews__grid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .contacts__inner { grid-template-columns: 1fr 1fr; align-items: start; }
   .custom__inner { grid-template-columns: 0.9fr 1.1fr; }
@@ -453,6 +472,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   .nav { display: flex; }
   .nav-toggle { display: none; }
   .grid-gallery { grid-template-columns: repeat(3, 1fr); }
+  .reviews__grid { grid-template-columns: repeat(3, 1fr); }
   .steps { grid-template-columns: repeat(4, 1fr); }
 }
 
@@ -566,6 +586,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 [data-design="2"] .tile { border: 2px solid var(--text); }
 [data-design="2"] .clients__card,
 [data-design="2"] .step,
+[data-design="2"] .review,
 [data-design="2"] .form { border-width: 2px; border-radius: 0; }
 [data-design="2"] .step__num { border-radius: 0; }
 [data-design="2"] .ticks li::before { border-radius: 0; transform: none; }
@@ -655,7 +676,8 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 [data-design="3"] .clients { order: 4; }
 [data-design="3"] .firing { order: 5; }
 [data-design="3"] .process { order: 6; }
-[data-design="3"] .contacts { order: 7; }
+[data-design="3"] .reviews { order: 7; }
+[data-design="3"] .contacts { order: 8; }
 
 /* ---------- уважение к prefers-reduced-motion ---------- */
 @media (prefers-reduced-motion: reduce) {
