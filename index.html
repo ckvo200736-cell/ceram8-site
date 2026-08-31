@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ru" data-design="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ceram8 — керамика ручной работы</title>
+<meta name="description" content="Ceram8 — гончарная мастерская. Тарелки с вашим рисунком для частных заказчиков и разработка посуды под бренд для ресторанов и кафе.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ПЕРЕКЛЮЧАТЕЛЬ ДИЗАЙН-КОНЦЕПЦИЙ (для выбора, потом можно удалить) -->
+<div class="switcher" role="group" aria-label="Выбор дизайна">
+  <span class="switcher__label">Дизайн:</span>
+  <button type="button" data-set-design="1" class="switcher__btn is-active">Тёплый минимализм</button>
+  <button type="button" data-set-design="2" class="switcher__btn">Журнальный</button>
+  <button type="button" data-set-design="3" class="switcher__btn">Тёмный премиум</button>
+</div>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a href="#top" class="logo">Ceram8</a>
+    <button type="button" class="nav-toggle" aria-label="Меню" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle__bar"></span>
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
+      <a href="#gallery">Работы</a>
+      <a href="#custom">Ваш рисунок</a>
+      <a href="#horeca">Ресторанам</a>
+      <a href="#firing">Обжиг</a>
+      <a href="#process">Как заказать</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ПЕРВЫЙ ЭКРАН -->
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <p class="kicker">Гончарная мастерская</p>
+        <h1>Ceram8 — керамика ручной работы</h1>
+        <p class="lead">
+          Делаю посуду, которую невозможно повторить: тарелки с рисунком, который выбираете вы,
+          и авторские сеты для ресторанов и кафе — с формой и брендом под конкретное заведение.
+        </p>
+        <div class="hero__actions">
+          <a href="#custom" class="btn btn--primary">Тарелка с вашим рисунком</a>
+          <a href="#horeca" class="btn btn--ghost">Ресторанам и кафе</a>
+        </div>
+        <p class="hero__note">Работаю с частными заказчиками и с компаниями по договору.</p>
+      </div>
+      <div class="hero__media">
+        <figure class="photo-frame photo-frame--hero" style="--img:url('images/panda.jpg')">
+          <svg viewBox="0 0 220 220" class="photo-frame__ph" role="img" aria-label="Керамика ручной работы">
+            <circle cx="110" cy="110" r="100" class="ware__rim"/>
+            <circle cx="110" cy="110" r="68" class="ware__well"/>
+            <path d="M78 118c12 18 52 18 64 0" class="ware__brush"/>
+            <circle cx="110" cy="86" r="10" class="ware__dot"/>
+          </svg>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ГАЛЕРЕЯ -->
+  <section id="gallery" class="section gallery">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Работы</h2>
+        <p class="section__sub">Часть заказов индивидуальные, часть — тиражи для заведений. Каждый предмет расписан вручную.</p>
+      </div>
+      <div class="grid-gallery">
+        <figure class="tile tile--a" style="--img:url('images/kot-ramen.jpg')"><figcaption>Тарелка «под дошик»: «Чёрный кот, обедающий»</figcaption></figure>
+        <figure class="tile tile--b" style="--img:url('images/panda.jpg')"><figcaption>Ваза «Панда» для хранения</figcaption></figure>
+        <figure class="tile tile--c" style="--img:url('images/bludca-nabor.jpg')"><figcaption>Комплект блюдец в цветочек, тираж от 5 штук</figcaption></figure>
+        <figure class="tile tile--d" style="--img:url('images/ryba.jpg')"><figcaption>Керамическая рыба</figcaption></figure>
+        <figure class="tile tile--e" style="--img:url('images/pitomcy.jpg')"><figcaption>Фигурки питомцев по вашему фото</figcaption></figure>
+        <figure class="tile tile--f" style="--img:url('images/rakovina.jpg')"><figcaption>Раковина ручной работы с краном</figcaption></figure>
+        <figure class="tile tile--g" style="--img:url('images/taro.jpg')"><figcaption>Набор керамических карт Таро</figcaption></figure>
+        <figure class="tile tile--h" style="--img:url('images/chaynik.jpg')"><figcaption>Чайник, сине-белая роспись</figcaption></figure>
+        <figure class="tile tile--i" style="--img:url('images/hryushka.jpg')"><figcaption>Конфетница «Хрюшка»</figcaption></figure>
+        <figure class="tile tile--j" style="--img:url('images/korova.jpg')"><figcaption>Ёмкость для хранения «Корова»</figcaption></figure>
+      </div>
+      <p class="gallery__hint">Все фото — реальные работы мастерской.</p>
+    </div>
+  </section>
+
+  <!-- ТАРЕЛКА С ВАШИМ РИСУНКОМ (ФИЗЛИЦА) -->
+  <section id="custom" class="section custom">
+    <div class="wrap custom__inner">
+      <div class="custom__media">
+        <figure class="photo-frame" style="--img:url('images/kot-ramen.jpg')">
+          <svg viewBox="0 0 220 220" class="photo-frame__ph" role="img" aria-label="Тарелка с рисунком заказчика">
+            <circle cx="110" cy="110" r="100" class="ware__rim"/>
+            <circle cx="110" cy="110" r="72" class="ware__well"/>
+            <path d="M78 92l14 40 12-26 10 30 16-44" class="ware__brush"/>
+            <path d="M74 138c16 14 56 14 72 0" class="ware__brush"/>
+          </svg>
+        </figure>
+      </div>
+      <div class="custom__text">
+        <p class="kicker">Частным заказчикам</p>
+        <h2>Тарелка с вашим рисунком</h2>
+        <p>
+          Вы присылаете фото, картинку или просто описываете идею — мем, семейный сюжет,
+          портрет питомца, любимый кадр. Я переношу это на изделие вручную, подбираю компоновку и цвет.
+        </p>
+        <p>
+          Классический пример — тарелка «под дошик» с вашим собственным рисунком:
+          вроде бытовая вещь, а становится полностью личной. Получается эксклюзив со своим сюжетом,
+          надписью и пожеланиями — по факту почти совместное творчество.
+        </p>
+        <ul class="ticks">
+          <li>Принимаю заявки от одной штуки</li>
+          <li>Рисунок и подпись согласуем по эскизу до обжига</li>
+          <li>Подходит как подарок с личным смыслом</li>
+        </ul>
+        <a href="#contacts" class="btn btn--primary">Обсудить свой рисунок</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ДЛЯ РЕСТОРАНОВ И КАФЕ (B2B) -->
+  <section id="horeca" class="section horeca">
+    <div class="wrap horeca__inner">
+      <div class="horeca__text">
+        <p class="kicker">Ресторанам и кафе</p>
+        <h2>Посуда под концепцию заведения</h2>
+        <p>
+          Разрабатываю дизайн посуды под запрос ресторана: тарелка, кружка, соусник, пиала —
+          то, что нужно именно вашему меню и подаче. Форму изделия моделируем совместно с вами,
+          а затем я брендирую его — логотип, клеймо, фирменный цвет. Такая посуда становится
+          узнаваемым знаком отличия заведения.
+        </p>
+        <ul class="ticks">
+          <li>Совместное моделирование формы под задачу подачи</li>
+          <li>Брендирование: логотип, клеймо, фирменная палитра</li>
+          <li>Заказ от 5 штук / пар, повторные тиражи</li>
+          <li>Работа с юридическими лицами по договору</li>
+        </ul>
+        <a href="#contacts" class="btn btn--primary">Запросить разработку</a>
+      </div>
+      <div class="horeca__media">
+        <figure class="photo-frame" style="--img:url('images/bludca-nabor.jpg')">
+          <svg viewBox="0 0 260 200" class="photo-frame__ph" role="img" aria-label="Сет посуды">
+            <circle cx="70" cy="110" r="60" class="ware__rim"/>
+            <circle cx="70" cy="110" r="40" class="ware__well"/>
+            <circle cx="176" cy="96" r="44" class="ware__rim"/>
+            <circle cx="176" cy="96" r="28" class="ware__well"/>
+            <path d="M150 150h72" class="ware__brush"/>
+            <text x="176" y="102" class="ware__mark">C8</text>
+          </svg>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ФИЗ И ЮР ЛИЦА -->
+  <section class="section clients">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Работаю и с физическими, и с юридическими лицами</h2>
+      </div>
+      <div class="clients__grid">
+        <div class="clients__card">
+          <h3>Физические лица</h3>
+          <p>Единичные изделия и небольшие партии: подарки, тарелки с личным рисунком, посуда для дома. Оплата удобным способом, без договора.</p>
+        </div>
+        <div class="clients__card">
+          <h3>Юридические лица</h3>
+          <p>Рестораны, кафе, бары, кофейни и компании: разработка и тираж посуды под бренд, договор, закрывающие документы, повторные заказы.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- УСЛУГА: ОБЖИГ В МУФЕЛЬНОЙ ПЕЧИ -->
+  <section id="firing" class="section firing">
+    <div class="wrap firing__inner">
+      <div class="firing__text">
+        <p class="kicker">Отдельная услуга</p>
+        <h2>Обжиг вашей керамики в муфельной печи</h2>
+        <p>
+          Лепите дома, но нет своей печи? Приносите изделия — обожгу их в своей
+          муфельной печи. Подходит и для утильного обжига высохших работ, и для
+          обжига по глазури.
+        </p>
+        <ul class="ticks">
+          <li>Заранее согласуем температуру и режим под вашу глину и глазурь</li>
+          <li>Изделия должны быть полностью просушены</li>
+          <li>Стоимость — по объёму загрузки, сроки зависят от очереди</li>
+        </ul>
+        <a href="#contacts" class="btn btn--ghost">Спросить про обжиг</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАК ПРОХОДИТ ЗАКАЗ -->
+  <section id="process" class="section process">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Как проходит заказ</h2>
+        <p class="section__sub">Путь от идеи до готового изделия — одинаковый для частных и корпоративных заказов, меняется только объём.</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step__num">1</span>
+          <h3>Заявка и идея</h3>
+          <p>Вы присылаете фото или картинку, описываете задачу и количество. Для заведений — концепцию и пожелания к подаче.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">2</span>
+          <h3>Эскиз и согласование</h3>
+          <p>Готовлю эскиз рисунка и форму изделия, согласуем размер, цвет, расположение рисунка и клейма. Фиксируем стоимость и сроки.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">3</span>
+          <h3>Лепка и роспись</h3>
+          <p>Формую изделие, наношу рисунок вручную. Для тиражей выдерживаю единую форму и оформление по всей партии.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">4</span>
+          <h3>Обжиг и выдача</h3>
+          <p>Глазуровка, обжиг, проверка партии. Затем самовывоз или отправка транспортной компанией.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ И ФОРМА -->
+  <section id="contacts" class="section contacts">
+    <div class="wrap contacts__inner">
+      <div class="contacts__info">
+        <h2>Контакты и заявка</h2>
+        <p>Напишите удобным способом или оставьте заявку — отвечу и задам уточняющие вопросы по рисунку и срокам.</p>
+        <ul class="contacts__list">
+          <li><span>Телефон</span> <span>[ТЕЛЕФОН]</span></li>
+          <li><span>Telegram</span> <span>[TELEGRAM]</span></li>
+          <li><span>WhatsApp</span> <span>[WHATSAPP]</span></li>
+          <li><span>Email</span> <span>[EMAIL]</span></li>
+          <li><span>Авито</span> <a href="https://www.avito.ru/brands/23a82c1f3da20328be0f1d66113ceb50/all?sellerId=0406275f1c417eec04f9500fab9211e6" rel="nofollow">объявления мастерской</a></li>
+          <li><span>Город</span> <span>Санкт-Петербург</span></li>
+          <li><span>Приём заказов</span> <span>[ГРАФИК / СРОКИ]</span></li>
+        </ul>
+        <p class="contacts__avito">
+          Все работы и цены — в <a href="https://www.avito.ru/brands/23a82c1f3da20328be0f1d66113ceb50/all?sellerId=0406275f1c417eec04f9500fab9211e6" rel="nofollow">профиле на Авито</a>.
+        </p>
+      </div>
+
+      <form class="form" id="request-form" novalidate>
+        <div class="field">
+          <label for="f-name">Имя</label>
+          <input type="text" id="f-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-contact">Телефон или email</label>
+          <input type="text" id="f-contact" name="contact" autocomplete="tel" required>
+        </div>
+        <div class="field">
+          <label for="f-type">Тип заказа</label>
+          <select id="f-type" name="type">
+            <option>Тарелка с моим рисунком (частный заказ)</option>
+            <option>Посуда для ресторана / кафе (тираж от 5)</option>
+            <option>Другое / не определился</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-message">Опишите идею или рисунок</label>
+          <textarea id="f-message" name="message" rows="4" placeholder="Что за изделие, сюжет рисунка, количество, желаемые сроки"></textarea>
+        </div>
+        <p class="form__hint">Фото и картинки приложите в переписке после отклика — так удобнее согласовывать эскиз.</p>
+        <button type="submit" class="btn btn--primary">Отправить заявку</button>
+        <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form__disclaimer">Форма пока не подключена к серверу — по кнопке откроется письмо в вашей почте на адрес <code>[EMAIL]</code>. Как подключить приём заявок — в <code>README.md</code>.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <span class="logo logo--sm">Ceram8</span>
+    <span>Керамика ручной работы · <span id="year"></span></span>
+    <span>Санкт-Петербург · [ТЕЛЕФОН]</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

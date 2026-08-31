@@ -1,0 +1,638 @@
+/* ==========================================================================
+   Ceram8 — одностраничный лендинг
+   Три дизайн-концепции переключаются атрибутом <html data-design="1|2|3">
+   1 — тёплый минимализм · 2 — журнальный · 3 — тёмный премиум
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --wrap: 1120px;
+  --gap: clamp(16px, 4vw, 40px);
+  --section-y: clamp(48px, 9vw, 104px);
+
+  /* значения ниже переопределяются в блоках [data-design=...] */
+  --bg: #f4ede4;
+  --surface: #fbf7f1;
+  --surface-2: #f0e6d8;
+  --text: #3a2f28;
+  --muted: #7a6a5d;
+  --accent: #b0673d;
+  --accent-ink: #fff;
+  --line: #e2d6c6;
+  --radius: 14px;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-head: Georgia, "Times New Roman", "PT Serif", serif;
+  --h1: clamp(2rem, 6vw, 3.4rem);
+  --h2: clamp(1.5rem, 4vw, 2.3rem);
+  --lead: clamp(1rem, 2.4vw, 1.2rem);
+  --head-weight: 600;
+  --head-spacing: 0;
+  --head-transform: none;
+  --tile-radius: 14px;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  font-weight: var(--head-weight);
+  letter-spacing: var(--head-spacing);
+  text-transform: var(--head-transform);
+  line-height: 1.15;
+  margin: 0 0 .5em;
+}
+h1 { font-size: var(--h1); }
+h2 { font-size: var(--h2); }
+h3 { font-size: 1.15rem; }
+p { margin: 0 0 1em; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gap);
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 1em;
+}
+
+.section { padding: var(--section-y) 0; }
+.section__head { max-width: 640px; margin-bottom: clamp(24px, 5vw, 48px); }
+.section__sub { color: var(--muted); font-size: var(--lead); }
+
+/* ---------- Кнопки ---------- */
+.btn {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform .15s ease, background-color .15s ease, color .15s ease;
+}
+.btn--primary { background: var(--accent); color: var(--accent-ink); }
+.btn--primary:hover { transform: translateY(-2px); }
+.btn--ghost { border-color: var(--line); color: var(--text); background: transparent; }
+.btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- Переключатель концепций (временный, для выбора дизайна) ---------- */
+.switcher {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px var(--gap);
+  background: #1e1a17;
+  color: #f4ede4;
+  font-size: .82rem;
+}
+.switcher__label { opacity: .7; margin-right: 4px; }
+.switcher__btn {
+  font: inherit;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.switcher__btn.is-active { background: #f4ede4; color: #1e1a17; border-color: #f4ede4; }
+
+/* ---------- Шапка ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: var(--header-bg, var(--bg));
+  border-bottom: 1px solid var(--line);
+}
+.site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 64px;
+}
+
+/* ---------- Кнопка-гамбургер (моб.) ---------- */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.nav-toggle__bar,
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  transition: transform .2s ease, top .2s ease, background .1s ease;
+}
+.nav-toggle__bar { position: relative; }
+.nav-toggle__bar::before { position: absolute; left: 0; top: -6px; }
+.nav-toggle__bar::after  { position: absolute; left: 0; top: 6px; }
+.site-header.is-open .nav-toggle__bar { background: transparent; }
+.site-header.is-open .nav-toggle__bar::before { top: 0; transform: rotate(45deg); }
+.site-header.is-open .nav-toggle__bar::after  { top: 0; transform: rotate(-45deg); }
+.logo {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: .04em;
+  text-decoration: none;
+}
+.nav { display: none; gap: 20px; font-size: .95rem; }
+.nav a { text-decoration: none; color: var(--muted); font-weight: 600; }
+.nav a:hover { color: var(--accent); }
+
+/* ---------- Первый экран ---------- */
+.hero { padding: clamp(40px, 8vw, 88px) 0 var(--section-y); }
+.hero__inner { display: grid; gap: clamp(28px, 6vw, 56px); align-items: center; }
+.lead { font-size: var(--lead); color: var(--muted); max-width: 46ch; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 1.4em 0 1em; }
+.hero__note { font-size: .9rem; color: var(--muted); margin: 0; }
+
+.hero__media { display: flex; justify-content: center; width: 100%; }
+.ware {
+  flex: none;
+  align-self: center;
+  width: min(88vw, 420px);
+  aspect-ratio: 1 / 1;
+  background: var(--surface);
+  border-radius: 50%;
+  padding: 6%;
+  box-shadow: 0 30px 60px -30px rgba(58,47,40,.45);
+}
+.ware--set { aspect-ratio: 13 / 10; border-radius: var(--radius); }
+.ware svg { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; overflow: visible; }
+.ware--set svg { aspect-ratio: 13 / 10; }
+.ware__rim { fill: var(--surface-2); stroke: var(--line); stroke-width: 2; }
+.ware__well { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.ware__brush { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.ware__dot { fill: var(--accent); }
+.ware__mark { fill: var(--accent); font-family: var(--font-head); font-size: 22px; text-anchor: middle; font-weight: 700; }
+
+/* ---------- Фото-рамка в блоках «Ваш рисунок» и «Ресторанам» ----------
+   Показывает фото из --img; пока фото нет — виден рисованный плейсхолдер. */
+.photo-frame {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 30px 60px -30px rgba(58,47,40,.4);
+}
+.photo-frame--wide { aspect-ratio: 13 / 10; }
+.photo-frame--hero { max-width: 460px; aspect-ratio: 4 / 5; }
+.photo-frame__ph {
+  position: absolute;
+  inset: 0;
+  width: 70%;
+  height: 70%;
+  margin: auto;
+  overflow: visible;
+}
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--img, none);
+  background-size: cover;
+  background-position: center;
+}
+
+/* ---------- Галерея ---------- */
+.grid-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: dense;
+  gap: clamp(12px, 2.4vw, 22px);
+}
+.tile {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--tile-radius);
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  background-image: var(--img, none);
+  background-size: cover;
+  background-position: center;
+}
+/* второй слой — глиняный градиент-плейсхолдер, виден пока нет фото
+   (добавьте на <figure> атрибут style="--img:url('images/1.jpg')") */
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.tile figcaption {
+  position: relative;
+  z-index: 1;
+  padding: 14px 16px;
+  font-size: .9rem;
+  font-weight: 600;
+  background: linear-gradient(to top, rgba(30,22,16,.72), rgba(30,22,16,0));
+  width: 100%;
+}
+.tile--a::before { background: linear-gradient(135deg,#c98a5b,#8a4f30); }
+.tile--b::before { background: linear-gradient(135deg,#e0b487,#b06a3f); }
+.tile--c::before { background: linear-gradient(135deg,#9a7c66,#5c463a); }
+.tile--d::before { background: linear-gradient(135deg,#d8c3a5,#9c7b53); }
+.tile--e::before { background: linear-gradient(135deg,#caa17a,#7d5236); }
+.tile--f::before { background: linear-gradient(135deg,#b9a186,#6d5544); }
+.tile--g::before { background: linear-gradient(135deg,#dcae83,#a85f38); }
+.tile--h::before { background: linear-gradient(135deg,#8f6f57,#4d3a2e); }
+.tile--i::before { background: linear-gradient(135deg,#d9bb95,#a06a44); }
+.tile--j::before { background: linear-gradient(135deg,#a78a6d,#574332); }
+.gallery__hint { margin-top: 18px; font-size: .85rem; color: var(--muted); }
+code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-size: .85em; }
+
+/* ---------- Блоки с картинкой сбоку ---------- */
+.custom__inner, .horeca__inner {
+  display: grid;
+  gap: clamp(28px, 6vw, 60px);
+  align-items: center;
+}
+
+/* ---------- Услуга «Обжиг» ---------- */
+.firing { background: var(--surface); }
+.firing__text { max-width: 640px; }
+.ticks { list-style: none; padding: 0; margin: 0 0 1.6em; }
+.ticks li { position: relative; padding-left: 28px; margin-bottom: .6em; }
+.ticks li::before {
+  content: "";
+  position: absolute;
+  left: 4px; top: .55em;
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 3px;
+  transform: rotate(45deg);
+}
+.ware--plate { background: var(--surface); }
+
+/* ---------- Физ / юр лица ---------- */
+.clients { background: var(--surface); }
+.clients__grid { display: grid; gap: var(--gap); }
+.clients__card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(22px, 4vw, 34px);
+}
+.clients__card h3 { color: var(--accent); }
+.clients__card p { margin: 0; color: var(--muted); }
+
+/* ---------- Услуга: обжиг ---------- */
+.firing { border-top: 1px solid var(--line); }
+.firing__inner { max-width: 680px; }
+.firing__text p { color: var(--muted); }
+
+/* ---------- Шаги заказа ---------- */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--gap);
+  counter-reset: step;
+}
+.step {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(20px, 4vw, 30px);
+}
+.step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-head);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.step h3 { margin-bottom: .3em; }
+.step p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* ---------- Контакты и форма ---------- */
+.contacts { background: var(--surface); }
+.contacts__inner { display: grid; gap: clamp(28px, 6vw, 56px); }
+.contacts__list { list-style: none; padding: 0; margin: 0 0 1.2em; }
+.contacts__list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: .95rem;
+}
+.contacts__list span:first-child { color: var(--muted); }
+.contacts__list a { text-decoration: none; font-weight: 600; }
+.contacts__avito { font-size: .9rem; color: var(--muted); }
+
+.form {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(22px, 4vw, 34px);
+}
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: .85rem; font-weight: 600; margin-bottom: 6px; color: var(--muted); }
+.field input, .field select, .field textarea {
+  width: 100%;
+  font: inherit;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.field textarea { resize: vertical; }
+.form__hint { font-size: .82rem; color: var(--muted); margin: 0 0 16px; }
+.form__status { font-size: .9rem; font-weight: 600; color: var(--accent); min-height: 1.2em; margin: 12px 0 0; }
+.form__disclaimer { font-size: .8rem; color: var(--muted); margin: 10px 0 0; }
+
+/* ---------- Подвал ---------- */
+.site-footer { border-top: 1px solid var(--line); padding: 32px 0; }
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  align-items: center;
+  font-size: .88rem;
+  color: var(--muted);
+}
+.logo--sm { font-size: 1.05rem; color: var(--text); }
+
+/* ==========================================================================
+   БРЕЙКПОИНТЫ
+   ========================================================================== */
+@media (min-width: 700px) {
+  .grid-gallery { grid-template-columns: repeat(2, 1fr); }
+  .clients__grid { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .contacts__inner { grid-template-columns: 1fr 1fr; align-items: start; }
+  .custom__inner { grid-template-columns: 0.9fr 1.1fr; }
+  .horeca__inner { grid-template-columns: 1.1fr 0.9fr; }
+  .hero__inner { grid-template-columns: 1.05fr 0.95fr; }
+}
+/* Мобильное меню: выпадающая панель под шапкой */
+@media (max-width: 999.98px) {
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: calc(-1 * var(--gap));
+    right: calc(-1 * var(--gap));
+    flex-direction: column;
+    gap: 0;
+    padding: 4px var(--gap) 10px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 24px 40px -24px rgba(0,0,0,.35);
+  }
+  .site-header.is-open .nav { display: flex; }
+  .nav a {
+    padding: 13px 2px;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav a:last-child { border-bottom: 0; }
+}
+
+@media (min-width: 1000px) {
+  .nav { display: flex; }
+  .nav-toggle { display: none; }
+  .grid-gallery { grid-template-columns: repeat(3, 1fr); }
+  .steps { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ==========================================================================
+   КОНЦЕПЦИЯ 1 — ТЁПЛЫЙ МИНИМАЛИЗМ  (палитра по умолчанию, лёгкие уточнения)
+   ========================================================================== */
+[data-design="1"] {
+  --bg: #f5efe6;
+  --surface: #fdfaf5;
+  --surface-2: #efe4d4;
+  --text: #2f271f;
+  --muted: #5c4b3b;
+  --accent: #a25a2f;
+  --line: #e0d5c4;
+
+  /* Фактура на фоне всего сайта. Своё изображение — положите в images/ и
+     поправьте путь; убрать фактуру совсем — замените значение на none. */
+  --site-photo: url("images/texture.jpg");
+}
+[data-design="1"] .hero { padding-top: clamp(48px, 10vw, 110px); }
+[data-design="1"] .section__sub { max-width: 44ch; }
+
+/* Светлая фактура штукатурки на фоне всего сайта.
+   Закреплённый слой во всю ширину окна: не двигается при прокрутке, работает
+   на мобильных (в отличие от background-attachment: fixed), текст скользит поверх. */
+[data-design="1"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(246,240,231,.88), rgba(246,240,231,.9)),
+    var(--site-photo) center center / cover no-repeat;
+}
+/* Панели, которые в этой концепции лежат на фактуре — делаем полупрозрачными,
+   чтобы она слегка просвечивала, а не обрывалась прямоугольником. */
+[data-design="1"] .clients,
+[data-design="1"] .contacts,
+[data-design="1"] .firing { background: rgba(251,247,241,.85); }
+[data-design="1"] .site-header { background: rgba(245,239,230,.92); }
+@supports (backdrop-filter: blur(6px)) or (-webkit-backdrop-filter: blur(6px)) {
+  [data-design="1"] .site-header {
+    background: rgba(245,239,230,.72);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* ==========================================================================
+   КОНЦЕПЦИЯ 2 — ЖУРНАЛЬНЫЙ / РЕДАКЦИОННЫЙ
+   Крупная типографика, жёсткие линии, асимметрия, почти без скруглений
+   ========================================================================== */
+[data-design="2"] {
+  --bg: #f2efe6;
+  --surface: #ffffff;
+  --surface-2: #e7e2d4;
+  --text: #141210;
+  --muted: #55503f;
+  --accent: #c6402a;
+  --accent-ink: #fff;
+  --line: #141210;
+  --radius: 0px;
+  --tile-radius: 0px;
+  --font-head: "Times New Roman", Georgia, serif;
+  --h1: clamp(2.6rem, 9vw, 5.4rem);
+  --h2: clamp(1.9rem, 5.5vw, 3.4rem);
+  --head-weight: 700;
+  --head-spacing: -0.02em;
+}
+[data-design="2"] body { font-size: 17px; }
+[data-design="2"] h1, [data-design="2"] h2 { line-height: 1.02; }
+[data-design="2"] .site-header { border-bottom-width: 2px; }
+[data-design="2"] .kicker { color: var(--text); border-top: 2px solid var(--text); padding-top: 8px; display: inline-block; }
+[data-design="2"] .section { border-top: 2px solid var(--text); }
+[data-design="2"] .hero { border-top: 0; }
+[data-design="2"] .section__head { max-width: 900px; }
+[data-design="2"] .btn { border-radius: 0; }
+[data-design="2"] .btn--primary { border-color: var(--text); }
+[data-design="2"] .btn--ghost { border-color: var(--text); }
+[data-design="2"] .ware { border-radius: 0; box-shadow: none; border: 2px solid var(--text); background: var(--surface); }
+[data-design="2"] .ware--set { border-radius: 0; }
+[data-design="2"] .photo-frame { border-radius: 0; box-shadow: none; border: 2px solid var(--text); }
+[data-design="2"] .ware__rim { fill: #f0eadd; stroke: var(--text); stroke-width: 2; }
+[data-design="2"] .ware__well { fill: #fff; stroke: var(--text); }
+[data-design="2"] .tile { border: 2px solid var(--text); }
+[data-design="2"] .clients__card,
+[data-design="2"] .step,
+[data-design="2"] .form { border-width: 2px; border-radius: 0; }
+[data-design="2"] .step__num { border-radius: 0; }
+[data-design="2"] .ticks li::before { border-radius: 0; transform: none; }
+[data-design="2"] .contacts__list li { border-bottom-width: 2px; }
+
+/* асимметрия на широких экранах */
+@media (min-width: 1000px) {
+  [data-design="2"] .hero__inner { grid-template-columns: 1.4fr 0.6fr; }
+  [data-design="2"] .custom__inner { grid-template-columns: 1.35fr 0.65fr; }
+  [data-design="2"] .horeca__inner { grid-template-columns: 0.6fr 1.4fr; }
+  [data-design="2"] .section__head { padding-right: 20%; }
+  [data-design="2"] .grid-gallery > .tile--a { grid-column: span 2; grid-row: span 2; }
+  [data-design="2"] .grid-gallery > .tile--f { grid-column: span 2; }
+}
+
+/* ==========================================================================
+   КОНЦЕПЦИЯ 3 — ТЁМНЫЙ ПРЕМИУМ  (акцент на B2B / рестораны)
+   ========================================================================== */
+[data-design="3"] {
+  --bg: #16120e;
+  --surface: #201a14;
+  --surface-2: #2b231b;
+  --text: #ece3d4;
+  --muted: #a2917c;
+  --accent: #c9a24b;
+  --accent-ink: #1a1409;
+  --line: #3a2f24;
+  --radius: 10px;
+  --tile-radius: 10px;
+  --font-head: Georgia, "Times New Roman", serif;
+  --head-spacing: .01em;
+
+  /* Фон первого экрана.
+     --hero-photo    — настоящее фото (стоковое, Pexels, свободная лицензия).
+                       Чтобы поменять снимок — положите свой файл в images/ и
+                       поправьте путь ниже; можно вернуть только текстуру,
+                       заменив значение на var(--hero-fallback).
+     --hero-fallback — процедурная «глиняная» текстура (SVG, без внешних файлов),
+                       она же подстраховывает, если фото не загрузилось. */
+  --hero-photo: url("images/hero.jpg");
+  --hero-fallback: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1600'%20height='1000'%3E%3Cdefs%3E%3CradialGradient%20id='g'%20cx='28%25'%20cy='22%25'%20r='95%25'%3E%3Cstop%20offset='0%25'%20stop-color='%23b07f52'/%3E%3Cstop%20offset='45%25'%20stop-color='%236a4b33'/%3E%3Cstop%20offset='78%25'%20stop-color='%233a2a1d'/%3E%3Cstop%20offset='100%25'%20stop-color='%23160f0a'/%3E%3C/radialGradient%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.009%200.016'%20numOctaves='4'%20seed='11'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='matrix'%20values='0%200%200%200%200.42%200%200%200%200%200.3%200%200%200%200%200.2%200%200%200%200.7%200'/%3E%3C/filter%3E%3C/defs%3E%3Crect%20width='100%25'%20height='100%25'%20fill='url(%23g)'/%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'%20opacity='0.5'/%3E%3Cellipse%20cx='30%25'%20cy='24%25'%20rx='42%25'%20ry='34%25'%20fill='%23c98f57'%20opacity='0.1'/%3E%3C/svg%3E");
+}
+[data-design="3"] body { -webkit-font-smoothing: antialiased; }
+
+/* Затемнённое фото на первом экране (снизу — запасная текстура) */
+[data-design="3"] .hero {
+  background-image:
+    linear-gradient(180deg, rgba(14,10,7,.68) 0%, rgba(14,10,7,.9) 60%, var(--bg) 100%),
+    var(--hero-photo),
+    var(--hero-fallback);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+[data-design="3"] .hero .ware { box-shadow: 0 40px 90px -30px rgba(0,0,0,.9); }
+
+[data-design="3"] .ware { box-shadow: 0 40px 80px -40px rgba(0,0,0,.8); background: var(--surface); }
+[data-design="3"] .photo-frame { box-shadow: 0 40px 80px -40px rgba(0,0,0,.8); }
+[data-design="3"] .ware__rim { fill: #2b231b; stroke: #4a3d2d; }
+[data-design="3"] .ware__well { fill: #221b14; stroke: #4a3d2d; }
+[data-design="3"] .ware__brush { stroke: var(--accent); }
+[data-design="3"] .btn--primary { box-shadow: 0 10px 30px -12px rgba(201,162,75,.5); }
+[data-design="3"] .btn--ghost { border-color: var(--muted); }
+[data-design="3"] .tile figcaption { background: linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,0)); }
+[data-design="3"] .tile--a::before { background: linear-gradient(135deg,#3a2f22,#171009); }
+[data-design="3"] .tile--b::before { background: linear-gradient(135deg,#4a3a22,#1c140a); }
+[data-design="3"] .tile--c::before { background: linear-gradient(135deg,#2f2a20,#12100b); }
+[data-design="3"] .tile--d::before { background: linear-gradient(135deg,#463a26,#1a140c); }
+[data-design="3"] .tile--e::before { background: linear-gradient(135deg,#3d3122,#15100a); }
+[data-design="3"] .tile--f::before { background: linear-gradient(135deg,#33291d,#100d09); }
+[data-design="3"] .tile--g::before { background: linear-gradient(135deg,#4c3c24,#1b130b); }
+[data-design="3"] .tile--h::before { background: linear-gradient(135deg,#2c241a,#0f0c08); }
+[data-design="3"] .tile--i::before { background: linear-gradient(135deg,#463823,#181009); }
+[data-design="3"] .tile--j::before { background: linear-gradient(135deg,#2a2218,#100c08); }
+[data-design="3"] .clients__card { background: var(--surface-2); }
+[data-design="3"] .clients__card h3 { color: var(--accent); }
+[data-design="3"] code { background: var(--surface-2); color: var(--text); }
+
+/* В тёмной премиум-концепции акцент на B2B: блок для ресторанов идёт сразу
+   после первого экрана, выше галереи и блока для физлиц.
+   Порядок секций задаётся флексом только для 3-й концепции. */
+[data-design="3"] main { display: flex; flex-direction: column; }
+[data-design="3"] .hero { order: 0; }
+[data-design="3"] .horeca { order: 1; }
+[data-design="3"] .gallery { order: 2; }
+[data-design="3"] .custom { order: 3; }
+[data-design="3"] .clients { order: 4; }
+[data-design="3"] .firing { order: 5; }
+[data-design="3"] .process { order: 6; }
+[data-design="3"] .contacts { order: 7; }
+
+/* ---------- уважение к prefers-reduced-motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
