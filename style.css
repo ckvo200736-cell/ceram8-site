@@ -300,10 +300,26 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .firing { background: var(--surface); }
 .firing__text { max-width: 640px; }
 
-/* ---------- Отзывы ---------- */
-.reviews__grid { display: grid; gap: var(--gap); margin-bottom: clamp(24px, 5vw, 40px); }
+/* ---------- Отзывы (горизонтальная лента) ---------- */
+.reviews__grid {
+  display: flex;
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  padding-bottom: 12px;
+  margin-bottom: clamp(20px, 4vw, 36px);
+}
+.reviews__grid::-webkit-scrollbar { height: 5px; }
+.reviews__grid::-webkit-scrollbar-track { background: transparent; }
+.reviews__grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
 .review {
   margin: 0;
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 380px;
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -437,7 +453,6 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 @media (min-width: 700px) {
   .grid-gallery { grid-template-columns: repeat(2, 1fr); }
   .clients__grid { grid-template-columns: repeat(2, 1fr); }
-  .reviews__grid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .contacts__inner { grid-template-columns: 1fr 1fr; align-items: start; }
   .custom__inner { grid-template-columns: 0.9fr 1.1fr; }
@@ -472,7 +487,6 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   .nav { display: flex; }
   .nav-toggle { display: none; }
   .grid-gallery { grid-template-columns: repeat(3, 1fr); }
-  .reviews__grid { grid-template-columns: repeat(3, 1fr); }
   .steps { grid-template-columns: repeat(4, 1fr); }
 }
 
@@ -676,8 +690,8 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 [data-design="3"] .clients { order: 4; }
 [data-design="3"] .firing { order: 5; }
 [data-design="3"] .process { order: 6; }
-[data-design="3"] .reviews { order: 7; }
-[data-design="3"] .contacts { order: 8; }
+[data-design="3"] .contacts { order: 7; }
+[data-design="3"] .reviews { order: 8; }
 
 /* ---------- уважение к prefers-reduced-motion ---------- */
 @media (prefers-reduced-motion: reduce) {
