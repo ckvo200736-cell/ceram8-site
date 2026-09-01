@@ -106,7 +106,8 @@
       "Имя: " + data.name + "\n" +
       "Контакт: " + data.contact + "\n" +
       "Тип заказа: " + data.type + "\n" +
-      "Идея / рисунок: " + (data.message || "—");
+      "Идея / рисунок: " + (data.message || "—") + "\n" +
+      "Согласие на обработку ПДн: да (" + data.consent_at + ")";
     window.location.href =
       "mailto:" + encodeURIComponent(MAIL_TO) +
       "?subject=" + encodeURIComponent("Заявка с сайта Ceram8") +
@@ -124,11 +125,18 @@
         contact: form.contact.value.trim(),
         type: form.type.value,
         message: form.message.value.trim(),
+        consent: !!(form.consent && form.consent.checked),
+        consent_at: new Date().toISOString(),
         company: ""
       };
 
       if (!data.name || !data.contact) {
         setStatus("Заполните имя и контакт для связи.", true);
+        return;
+      }
+
+      if (!data.consent) {
+        setStatus("Отметьте согласие на обработку персональных данных.", true);
         return;
       }
 

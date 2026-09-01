@@ -292,6 +292,10 @@
           <label for="f-company">Не заполняйте это поле</label>
           <input type="text" id="f-company" name="company" tabindex="-1" autocomplete="off">
         </div>
+        <label class="consent">
+          <input type="checkbox" id="f-consent" name="consent" required>
+          <span>Я ознакомлен(а) с <a href="privacy.html" target="_blank" rel="noopener">политикой конфиденциальности</a> и даю согласие на обработку персональных данных</span>
+        </label>
         <p class="form__hint">Фото и картинки приложите в переписке после отклика — так удобнее согласовывать эскиз.</p>
         <button type="submit" class="btn btn--primary">Отправить заявку</button>
         <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
@@ -414,6 +418,7 @@
     </span>
     <span>Керамика ручной работы · <span id="year"></span></span>
     <span>Санкт-Петербург · [ТЕЛЕФОН]</span>
+    <a href="privacy.html">Политика конфиденциальности</a>
   </div>
 </footer>
 
