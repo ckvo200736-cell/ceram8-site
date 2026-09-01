@@ -296,6 +296,7 @@ p { margin: 0 0 1em; }
 .tile--h::before { background: linear-gradient(135deg,#8f6f57,#4d3a2e); }
 .tile--i::before { background: linear-gradient(135deg,#d9bb95,#a06a44); }
 .tile--j::before { background: linear-gradient(135deg,#a78a6d,#574332); }
+.tile--k::before { background: linear-gradient(135deg,#5c7d84,#2c3f3e); }
 .gallery__hint { margin-top: 18px; font-size: .85rem; color: var(--muted); }
 code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-size: .85em; }
 
@@ -310,68 +311,28 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .firing { background: var(--surface); }
 .firing__text { max-width: 640px; }
 
-/* ---------- Отзывы (карусель) ---------- */
-.reviews__carousel { position: relative; }
+/* ---------- Отзывы ---------- */
 .reviews__grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: clamp(12px, 2vw, 18px);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  padding-bottom: 12px;
-  margin-bottom: clamp(18px, 3vw, 30px);
-  scrollbar-width: thin;
+  margin-bottom: clamp(20px, 3vw, 32px);
 }
-.reviews__grid::-webkit-scrollbar { height: 4px; }
-.reviews__grid::-webkit-scrollbar-track { background: transparent; }
-.reviews__grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
 .review {
   margin: 0;
-  flex: 0 0 min(80vw, 300px);
-  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: clamp(16px, 3vw, 22px);
 }
 .review__stars { color: var(--accent); letter-spacing: 1.5px; font-size: .8rem; }
-.review blockquote { margin: 0; font-size: .86rem; line-height: 1.5; }
-.review figcaption { display: flex; flex-direction: column; gap: 1px; margin-top: auto; padding-top: 4px; }
+.review blockquote { margin: 0; font-size: .88rem; line-height: 1.55; }
+.review figcaption { display: flex; flex-direction: column; gap: 1px; margin-top: auto; padding-top: 6px; }
 .review__author { font-weight: 700; font-size: .88rem; }
 .review__meta { font-size: .74rem; color: var(--muted); }
-
-/* стрелки листания — только на широких экранах с мышью */
-.reviews__nav {
-  position: absolute;
-  top: 38%;
-  transform: translateY(-50%);
-  z-index: 2;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--text);
-  font: inherit;
-  font-size: 1.4rem;
-  line-height: 1;
-  cursor: pointer;
-}
-.reviews__nav--prev { left: -6px; }
-.reviews__nav--next { right: -6px; }
-.reviews__nav:hover { border-color: var(--accent); color: var(--accent); }
-.reviews__nav:disabled { opacity: .3; cursor: default; }
-@media (min-width: 760px) and (pointer: fine) {
-  .reviews__nav { display: flex; }
-  .reviews__grid { scroll-padding-inline: 52px; }
-}
 .ticks { list-style: none; padding: 0; margin: 0 0 1.6em; }
 .ticks li { position: relative; padding-left: 28px; margin-bottom: .6em; }
 .ticks li::before {
@@ -492,6 +453,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 @media (min-width: 700px) {
   .grid-gallery { grid-template-columns: repeat(2, 1fr); }
   .clients__grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews__grid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .contacts__inner { grid-template-columns: 1fr 1fr; align-items: start; }
   .custom__inner { grid-template-columns: 0.9fr 1.1fr; }
@@ -526,6 +488,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   .nav { display: flex; }
   .nav-toggle { display: none; }
   .grid-gallery { grid-template-columns: repeat(3, 1fr); }
+  .reviews__grid { grid-template-columns: repeat(3, 1fr); }
   .steps { grid-template-columns: repeat(4, 1fr); }
 }
 
@@ -714,6 +677,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 [data-design="3"] .tile--h::before { background: linear-gradient(135deg,#2c241a,#0f0c08); }
 [data-design="3"] .tile--i::before { background: linear-gradient(135deg,#463823,#181009); }
 [data-design="3"] .tile--j::before { background: linear-gradient(135deg,#2a2218,#100c08); }
+[data-design="3"] .tile--k::before { background: linear-gradient(135deg,#26302c,#0e1210); }
 [data-design="3"] .clients__card { background: var(--surface-2); }
 [data-design="3"] .clients__card h3 { color: var(--accent); }
 [data-design="3"] code { background: var(--surface-2); color: var(--text); }
