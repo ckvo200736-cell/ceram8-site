@@ -298,55 +298,91 @@
         <h2>Отзывы</h2>
         <p class="section__sub">Отзывы покупателей с Авито. Все отзывы и оценки — в профиле мастерской.</p>
       </div>
-      <div class="reviews__grid">
-        <figure class="review">
-          <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
-          <blockquote>Было очень приятно воплощать задуманное именно здесь! Красивая локация мастерской, позитивный, участливый и опытный специалист, к тому же с невероятными и уникальными работами.</blockquote>
-          <figcaption>
-            <span class="review__author">Ирина</span>
-            <span class="review__meta">Авито · 28 августа · обжиг в муфельной печи</span>
-          </figcaption>
-        </figure>
-        <figure class="review">
-          <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
-          <blockquote>Спасибо большое мастеру за замечательное колечко. Заказ был отправлен оперативно. Продавца рекомендую!</blockquote>
-          <figcaption>
-            <span class="review__author">Елена Бахарева</span>
-            <span class="review__meta">Авито · 21 августа · кольцо ручной работы</span>
-          </figcaption>
-        </figure>
-        <figure class="review">
-          <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
-          <blockquote>Отличный мастер-керамист, знает своё дело: педантична, пунктуальна, исполнительна. Спасибо за проделанную работу и мой заказ.</blockquote>
-          <figcaption>
-            <span class="review__author">Евгения</span>
-            <span class="review__meta">Авито · 16 августа · обжиг в муфельной печи</span>
-          </figcaption>
-        </figure>
-        <figure class="review">
-          <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
-          <blockquote>Спасибо огромное! Всё в срок отправлено, шикарно упаковано, очень осталась довольна сотрудничеством. Буду вас рекомендовать. Очень красивая вещица!</blockquote>
-          <figcaption>
-            <span class="review__author">Анастасия</span>
-            <span class="review__meta">Авито · 7 августа · тарелка под доширак «Кролик»</span>
-          </figcaption>
-        </figure>
-        <figure class="review">
-          <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
-          <blockquote>Тарелочка для дошика просто чудесная! Продавец быстро отправила, надёжно упаковала и вложила приятный подарочек. Однозначно рекомендую.</blockquote>
-          <figcaption>
-            <span class="review__author">Елена</span>
-            <span class="review__meta">Авито · 2 августа · тарелочка под доширак</span>
-          </figcaption>
-        </figure>
-        <figure class="review">
-          <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
-          <blockquote>Заказала в подарок хрюшку-конфетницу. Во время изготовления продавец был на связи, рассказывал обо всех этапах. Хрюшка получилась чудесная — смотрю и радуюсь, думаю, именинник будет в восторге.</blockquote>
-          <figcaption>
-            <span class="review__author">Руна</span>
-            <span class="review__meta">Авито · 1 августа · конфетница «Хрюшка»</span>
-          </figcaption>
-        </figure>
+      <div class="reviews__carousel">
+        <button type="button" class="reviews__nav reviews__nav--prev" aria-label="Прокрутить отзывы назад">‹</button>
+        <div class="reviews__grid" id="reviews-track">
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Было очень приятно воплощать задуманное именно здесь! Красивая локация мастерской, позитивный, участливый и опытный специалист, к тому же с невероятными и уникальными работами.</blockquote>
+            <figcaption>
+              <span class="review__author">Ирина</span>
+              <span class="review__meta">Авито · 28 августа · обжиг в муфельной печи</span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Прекрасная мастерица! Сделала на заказ великолепную Хрюшу, сообщала о каждом этапе, согласовывала всё вплоть до надписи на дне. Всё аккуратно упаковано, внутри были подарки. Однозначно рекомендую!</blockquote>
+            <figcaption>
+              <span class="review__author">Ольга</span>
+              <span class="review__meta">Авито · 19 июня · конфетница «Хрюшка»</span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Отличный мастер-керамист, знает своё дело: педантична, пунктуальна, исполнительна. Спасибо за проделанную работу и мой заказ.</blockquote>
+            <figcaption>
+              <span class="review__author">Евгения</span>
+              <span class="review__meta">Авито · 16 августа · обжиг в муфельной печи</span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Спасибо огромное! Всё в срок отправлено, шикарно упаковано, очень осталась довольна сотрудничеством. Буду вас рекомендовать. Очень красивая вещица!</blockquote>
+            <figcaption>
+              <span class="review__author">Анастасия</span>
+              <span class="review__meta">Авито · 7 августа · тарелка под доширак «Кролик»</span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Большое спасибо за тарелочку для Доширака — ребёнок от неё в восторге. Все пожелания по изготовлению исполнили.</blockquote>
+            <figcaption>
+              <span class="review__author">Алексей</span>
+              <span class="review__meta">Авито · 22 июля · тарелочка под доширак</span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Спасибо большое мастеру за замечательное колечко. Заказ был отправлен оперативно. Продавца рекомендую!</blockquote>
+            <figcaption>
+              <span class="review__author">Елена Бахарева</span>
+              <span class="review__meta">Авито · 21 августа · кольцо ручной работы</span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Заказала в подарок хрюшку-конфетницу. Во время изготовления продавец был на связи, рассказывал обо всех этапах. Хрюшка получилась чудесная — смотрю и радуюсь, думаю, именинник будет в восторге.</blockquote>
+            <figcaption>
+              <span class="review__author">Руна</span>
+              <span class="review__meta">Авито · 1 августа · конфетница «Хрюшка»</span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Очень красивая ваза. Отправлено всё быстро, упаковано отлично. Рекомендую.</blockquote>
+            <figcaption>
+              <span class="review__author">Марина</span>
+              <span class="review__meta">Авито · 13 июля · ваза, роспись H&amp;M</span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Тарелочка для дошика просто чудесная! Продавец быстро отправила, надёжно упаковала и вложила приятный подарочек. Однозначно рекомендую.</blockquote>
+            <figcaption>
+              <span class="review__author">Елена</span>
+              <span class="review__meta">Авито · 2 августа · тарелочка под доширак</span>
+            </figcaption>
+          </figure>
+          <figure class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Очень вежливая и приятная девушка, творчески, но ответственно подошла к заказу! Тарелочка получилась шикарная, огромное спасибо.</blockquote>
+            <figcaption>
+              <span class="review__author">Анастасия</span>
+              <span class="review__meta">Авито · 27 июня · тарелочка под доширак</span>
+            </figcaption>
+          </figure>
+        </div>
+        <button type="button" class="reviews__nav reviews__nav--next" aria-label="Прокрутить отзывы вперёд">›</button>
       </div>
       <a href="https://www.avito.ru/brands/23a82c1f3da20328be0f1d66113ceb50/all?sellerId=0406275f1c417eec04f9500fab9211e6" class="btn btn--ghost" rel="nofollow">Все отзывы на Авито</a>
     </div>

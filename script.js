@@ -55,6 +55,33 @@
     });
   }
 
+  /* ---------- Карусель отзывов ---------- */
+  var track = document.getElementById("reviews-track");
+  var navBtns = document.querySelectorAll(".reviews__nav");
+  if (track && navBtns.length) {
+    var stepBy = function () {
+      var card = track.querySelector(".review");
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || "16") || 16;
+      return card ? card.getBoundingClientRect().width + gap : 300;
+    };
+    var syncNav = function () {
+      var maxScroll = track.scrollWidth - track.clientWidth - 2;
+      navBtns.forEach(function (b) {
+        var prev = b.classList.contains("reviews__nav--prev");
+        b.disabled = prev ? track.scrollLeft <= 2 : track.scrollLeft >= maxScroll;
+      });
+    };
+    navBtns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var dir = b.classList.contains("reviews__nav--prev") ? -1 : 1;
+        track.scrollBy({ left: dir * stepBy(), behavior: "smooth" });
+      });
+    });
+    track.addEventListener("scroll", syncNav, { passive: true });
+    window.addEventListener("resize", syncNav);
+    syncNav();
+  }
+
   /* ---------- Год в подвале ---------- */
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();

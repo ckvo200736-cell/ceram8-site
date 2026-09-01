@@ -310,39 +310,68 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .firing { background: var(--surface); }
 .firing__text { max-width: 640px; }
 
-/* ---------- Отзывы (горизонтальная лента) ---------- */
+/* ---------- Отзывы (карусель) ---------- */
+.reviews__carousel { position: relative; }
 .reviews__grid {
   display: flex;
-  gap: var(--gap);
+  gap: clamp(12px, 2vw, 18px);
   overflow-x: auto;
-  scroll-snap-type: x proximity;
+  scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
   padding-bottom: 12px;
-  margin-bottom: clamp(20px, 4vw, 36px);
+  margin-bottom: clamp(18px, 3vw, 30px);
+  scrollbar-width: thin;
 }
-.reviews__grid::-webkit-scrollbar { height: 5px; }
+.reviews__grid::-webkit-scrollbar { height: 4px; }
 .reviews__grid::-webkit-scrollbar-track { background: transparent; }
 .reviews__grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
 .review {
   margin: 0;
-  flex: 1 1 220px;
-  min-width: 220px;
-  max-width: 380px;
+  flex: 0 0 min(80vw, 300px);
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: clamp(20px, 4vw, 28px);
+  padding: clamp(16px, 3vw, 22px);
 }
-.review__stars { color: var(--accent); letter-spacing: 2px; font-size: .95rem; }
-.review blockquote { margin: 0; font-size: 1.02rem; line-height: 1.55; }
-.review figcaption { display: flex; flex-direction: column; gap: 2px; margin-top: auto; }
-.review__author { font-weight: 700; }
-.review__meta { font-size: .82rem; color: var(--muted); }
+.review__stars { color: var(--accent); letter-spacing: 1.5px; font-size: .8rem; }
+.review blockquote { margin: 0; font-size: .86rem; line-height: 1.5; }
+.review figcaption { display: flex; flex-direction: column; gap: 1px; margin-top: auto; padding-top: 4px; }
+.review__author { font-weight: 700; font-size: .88rem; }
+.review__meta { font-size: .74rem; color: var(--muted); }
+
+/* стрелки листания — только на широких экранах с мышью */
+.reviews__nav {
+  position: absolute;
+  top: 38%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.reviews__nav--prev { left: -6px; }
+.reviews__nav--next { right: -6px; }
+.reviews__nav:hover { border-color: var(--accent); color: var(--accent); }
+.reviews__nav:disabled { opacity: .3; cursor: default; }
+@media (min-width: 760px) and (pointer: fine) {
+  .reviews__nav { display: flex; }
+  .reviews__grid { scroll-padding-inline: 52px; }
+}
 .ticks { list-style: none; padding: 0; margin: 0 0 1.6em; }
 .ticks li { position: relative; padding-left: 28px; margin-bottom: .6em; }
 .ticks li::before {
