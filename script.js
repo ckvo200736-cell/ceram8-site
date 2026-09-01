@@ -86,38 +86,78 @@
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
 
-  /* ---------- Форма заявки (без сервера: собираем письмо) ---------- */
+  /* ---------- Форма заявки ---------- */
+  // URL облачной функции-прокси (Yandex Cloud). Пустая строка = отправки нет,
+  // кнопка просто открывает письмо (mailto) как запасной вариант.
+  var FORM_ENDPOINT = "";
+  var MAIL_TO = "[EMAIL]"; // запасной адрес для mailto, пока нет endpoint
+
   var form = document.getElementById("request-form");
   var status = document.getElementById("form-status");
-  var MAIL_TO = "[EMAIL]"; // заказчик подставляет реальный адрес
+
+  function setStatus(text, isError) {
+    if (!status) return;
+    status.textContent = text;
+    status.classList.toggle("form__status--err", !!isError);
+  }
+
+  function mailtoFallback(data) {
+    var body =
+      "Имя: " + data.name + "\n" +
+      "Контакт: " + data.contact + "\n" +
+      "Тип заказа: " + data.type + "\n" +
+      "Идея / рисунок: " + (data.message || "—");
+    window.location.href =
+      "mailto:" + encodeURIComponent(MAIL_TO) +
+      "?subject=" + encodeURIComponent("Заявка с сайта Ceram8") +
+      "&body=" + encodeURIComponent(body);
+  }
 
   if (form) {
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
-      var name = form.name.value.trim();
-      var contact = form.contact.value.trim();
-      var type = form.type.value;
-      var message = form.message.value.trim();
 
-      if (!name || !contact) {
-        status.textContent = "Заполните имя и контакт для связи.";
+      if (form.company && form.company.value) return; // ловушка для ботов
+
+      var data = {
+        name: form.name.value.trim(),
+        contact: form.contact.value.trim(),
+        type: form.type.value,
+        message: form.message.value.trim(),
+        company: ""
+      };
+
+      if (!data.name || !data.contact) {
+        setStatus("Заполните имя и контакт для связи.", true);
         return;
       }
 
-      var body =
-        "Имя: " + name + "\n" +
-        "Контакт: " + contact + "\n" +
-        "Тип заказа: " + type + "\n" +
-        "Идея / рисунок: " + (message || "—");
+      if (!FORM_ENDPOINT) {
+        mailtoFallback(data);
+        setStatus("Открываю почтовую программу. Если ничего не произошло — напишите напрямую по контактам слева.");
+        form.reset();
+        return;
+      }
 
-      var href =
-        "mailto:" + encodeURIComponent(MAIL_TO) +
-        "?subject=" + encodeURIComponent("Заявка с сайта Ceram8") +
-        "&body=" + encodeURIComponent(body);
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) btn.setAttribute("aria-busy", "true");
+      setStatus("Отправляю…");
 
-      window.location.href = href;
-      status.textContent = "Открываю почтовую программу. Если ничего не произошло — напишите нам напрямую по контактам слева.";
-      form.reset();
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: JSON.stringify(data) // без заголовков — «простой» запрос, без preflight
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error("bad status " + r.status);
+          setStatus("Заявка отправлена. Отвечу в течение дня — напишу на указанный контакт.");
+          form.reset();
+        })
+        .catch(function () {
+          setStatus("Не удалось отправить. Напишите, пожалуйста, напрямую по контактам слева.", true);
+        })
+        .then(function () {
+          if (btn) btn.removeAttribute("aria-busy");
+        });
     });
   }
 })();

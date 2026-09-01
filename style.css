@@ -472,7 +472,11 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .field textarea { resize: vertical; }
 .form__hint { font-size: .82rem; color: var(--muted); margin: 0 0 16px; }
 .form__status { font-size: .9rem; font-weight: 600; color: var(--accent); min-height: 1.2em; margin: 12px 0 0; }
+.form__status--err { color: #c0392b; }
 .form__disclaimer { font-size: .8rem; color: var(--muted); margin: 10px 0 0; }
+.form__disclaimer a { font-weight: 600; }
+.field--hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.btn[aria-busy="true"] { opacity: .6; pointer-events: none; }
 
 /* ---------- Подвал ---------- */
 .site-footer { border-top: 1px solid var(--line); padding: 32px 0; }

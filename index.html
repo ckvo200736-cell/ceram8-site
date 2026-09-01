@@ -288,10 +288,14 @@
           <label for="f-message">Опишите идею или рисунок</label>
           <textarea id="f-message" name="message" rows="4" placeholder="Что за изделие, сюжет рисунка, количество, желаемые сроки"></textarea>
         </div>
+        <div class="field field--hp" aria-hidden="true">
+          <label for="f-company">Не заполняйте это поле</label>
+          <input type="text" id="f-company" name="company" tabindex="-1" autocomplete="off">
+        </div>
         <p class="form__hint">Фото и картинки приложите в переписке после отклика — так удобнее согласовывать эскиз.</p>
         <button type="submit" class="btn btn--primary">Отправить заявку</button>
         <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
-        <p class="form__disclaimer">Форма пока не подключена к серверу — по кнопке откроется письмо в вашей почте на адрес <code>[EMAIL]</code>. Как подключить приём заявок — в <code>README.md</code>.</p>
+        <p class="form__disclaimer">Или напишите напрямую: <a href="tel:+70000000000">[ТЕЛЕФОН]</a>, <a href="#">[TELEGRAM]</a>.</p>
       </form>
     </div>
   </section>
