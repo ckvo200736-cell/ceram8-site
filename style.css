@@ -98,6 +98,7 @@ p { margin: 0 0 1em; }
 .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ---------- Переключатель концепций (временный, для выбора дизайна) ---------- */
+.switcher[hidden] { display: none; }
 .switcher {
   position: relative;
   z-index: 100;

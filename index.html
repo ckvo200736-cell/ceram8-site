@@ -10,8 +10,9 @@
 </head>
 <body>
 
-<!-- ПЕРЕКЛЮЧАТЕЛЬ ДИЗАЙН-КОНЦЕПЦИЙ (для выбора, потом можно удалить) -->
-<div class="switcher" role="group" aria-label="Выбор дизайна">
+<!-- ПЕРЕКЛЮЧАТЕЛЬ ДИЗАЙН-КОНЦЕПЦИЙ — скрыт (hidden), не удалён.
+     Чтобы вернуть панель — уберите атрибут hidden у этого div. -->
+<div class="switcher" role="group" aria-label="Выбор дизайна" hidden>
   <span class="switcher__label">Дизайн:</span>
   <button type="button" data-set-design="1" class="switcher__btn is-active">Тёплый минимализм</button>
   <button type="button" data-set-design="2" class="switcher__btn">Журнальный</button>
