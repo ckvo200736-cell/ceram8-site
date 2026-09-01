@@ -303,7 +303,9 @@
         <h2>Отзывы</h2>
         <p class="section__sub">Отзывы покупателей с Авито. Все отзывы и оценки — в профиле мастерской.</p>
       </div>
-      <div class="reviews__grid">
+      <div class="reviews__carousel">
+        <button type="button" class="reviews__nav reviews__nav--prev" aria-label="Прокрутить отзывы назад">‹</button>
+        <div class="reviews__grid" id="reviews-track">
           <figure class="review">
             <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
             <blockquote>Было очень приятно воплощать задуманное именно здесь! Красивая локация мастерской, позитивный, участливый и опытный специалист, к тому же с невероятными и уникальными работами.</blockquote>
@@ -384,6 +386,8 @@
               <span class="review__meta">Авито · 27 июня · тарелочка под доширак</span>
             </figcaption>
           </figure>
+        </div>
+        <button type="button" class="reviews__nav reviews__nav--next" aria-label="Прокрутить отзывы вперёд">›</button>
       </div>
       <a href="https://www.avito.ru/brands/23a82c1f3da20328be0f1d66113ceb50/all?sellerId=0406275f1c417eec04f9500fab9211e6" class="btn btn--ghost" rel="nofollow">Все отзывы на Авито</a>
     </div>

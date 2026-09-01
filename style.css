@@ -311,28 +311,63 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .firing { background: var(--surface); }
 .firing__text { max-width: 640px; }
 
-/* ---------- Отзывы ---------- */
+/* ---------- Отзывы (тихая карусель) ---------- */
+.reviews__carousel { position: relative; }
 .reviews__grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   gap: clamp(12px, 2vw, 18px);
-  margin-bottom: clamp(20px, 3vw, 32px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  margin-bottom: clamp(18px, 3vw, 28px);
+  padding-bottom: 2px;
+  scrollbar-width: none;
 }
+.reviews__grid::-webkit-scrollbar { display: none; }
 .review {
   margin: 0;
+  flex: 0 0 min(82vw, 300px);
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: var(--surface);
+  background: transparent;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: clamp(16px, 3vw, 22px);
 }
-.review__stars { color: var(--accent); letter-spacing: 1.5px; font-size: .8rem; }
+.review__stars { color: var(--accent); letter-spacing: 1.5px; font-size: .8rem; opacity: .9; }
 .review blockquote { margin: 0; font-size: .88rem; line-height: 1.55; }
 .review figcaption { display: flex; flex-direction: column; gap: 1px; margin-top: auto; padding-top: 6px; }
 .review__author { font-weight: 700; font-size: .88rem; }
 .review__meta { font-size: .74rem; color: var(--muted); }
+
+/* стрелки — тонкие шевроны, без заливки; только десктоп + мышь */
+.reviews__nav {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: none;
+  padding: 8px 10px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .15s ease;
+}
+.reviews__nav--prev { left: -14px; }
+.reviews__nav--next { right: -14px; }
+.reviews__nav:hover { color: var(--accent); }
+.reviews__nav:disabled { opacity: .25; cursor: default; }
+@media (min-width: 780px) and (pointer: fine) {
+  .reviews__nav { display: block; }
+  .reviews__grid { scroll-padding-inline: 8px; }
+}
 .ticks { list-style: none; padding: 0; margin: 0 0 1.6em; }
 .ticks li { position: relative; padding-left: 28px; margin-bottom: .6em; }
 .ticks li::before {
