@@ -311,7 +311,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .firing { background: var(--surface); }
 .firing__text { max-width: 640px; }
 
-/* ---------- Отзывы (тихая карусель) ---------- */
+/* ---------- Отзывы (карусель) ---------- */
 .reviews__carousel { position: relative; }
 .reviews__grid {
   display: flex;
@@ -332,41 +332,45 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: transparent;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: clamp(16px, 3vw, 22px);
 }
-.review__stars { color: var(--accent); letter-spacing: 1.5px; font-size: .8rem; opacity: .9; }
+.review__stars { color: var(--accent); letter-spacing: 1.5px; font-size: .8rem; }
 .review blockquote { margin: 0; font-size: .88rem; line-height: 1.55; }
 .review figcaption { display: flex; flex-direction: column; gap: 1px; margin-top: auto; padding-top: 6px; }
 .review__author { font-weight: 700; font-size: .88rem; }
 .review__meta { font-size: .74rem; color: var(--muted); }
 
-/* стрелки — тонкие шевроны, без заливки; только десктоп + мышь */
+/* стрелки листания: аккуратные круглые кнопки, только шире 700px с мышью */
 .reviews__nav {
   position: absolute;
-  top: 40%;
+  top: 42%;
   transform: translateY(-50%);
   z-index: 2;
   display: none;
-  padding: 8px 10px;
-  border: 0;
-  background: none;
-  color: var(--muted);
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
   font: inherit;
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
-  transition: color .15s ease;
+  box-shadow: 0 6px 18px -8px rgba(0,0,0,.35);
+  transition: color .15s ease, border-color .15s ease;
 }
-.reviews__nav--prev { left: -14px; }
-.reviews__nav--next { right: -14px; }
-.reviews__nav:hover { color: var(--accent); }
-.reviews__nav:disabled { opacity: .25; cursor: default; }
-@media (min-width: 780px) and (pointer: fine) {
-  .reviews__nav { display: block; }
-  .reviews__grid { scroll-padding-inline: 8px; }
+.reviews__nav--prev { left: -12px; }
+.reviews__nav--next { right: -12px; }
+.reviews__nav:hover { color: var(--accent); border-color: var(--accent); }
+.reviews__nav:disabled { opacity: .3; cursor: default; box-shadow: none; }
+@media (min-width: 700px) and (pointer: fine) {
+  .reviews__nav { display: flex; }
 }
 .ticks { list-style: none; padding: 0; margin: 0 0 1.6em; }
 .ticks li { position: relative; padding-left: 28px; margin-bottom: .6em; }
@@ -715,6 +719,9 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 [data-design="3"] .tile--k::before { background: linear-gradient(135deg,#26302c,#0e1210); }
 [data-design="3"] .clients__card { background: var(--surface-2); }
 [data-design="3"] .clients__card h3 { color: var(--accent); }
+/* отзывы в тёмной концепции — карточка вровень с фоном, не «светится» */
+[data-design="3"] .review { background: var(--bg); }
+[data-design="3"] .reviews__nav { background: var(--surface); }
 [data-design="3"] code { background: var(--surface-2); color: var(--text); }
 
 /* В тёмной премиум-концепции акцент на B2B: блок для ресторанов идёт сразу
