@@ -528,6 +528,29 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   cursor: pointer;
 }
 
+/* модалка «спасибо за обращение» */
+.modal {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  width: min(420px, calc(100vw - 40px));
+  margin: auto;
+}
+.modal::backdrop { background: rgba(10, 8, 6, .55); }
+.modal__box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(28px, 6vw, 40px);
+  text-align: center;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .55);
+}
+.modal__icon { width: 54px; height: 54px; color: var(--accent); margin-bottom: 12px; }
+.modal h2 { font-size: 1.3rem; margin: 0 0 .35em; }
+.modal p { color: var(--muted); margin: 0 0 1.5em; }
+.modal .btn { min-width: 150px; }
+
 /* ---------- Подвал ---------- */
 .site-footer { border-top: 1px solid var(--line); padding: 32px 0; }
 .site-footer__inner {

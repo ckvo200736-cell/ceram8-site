@@ -90,11 +90,29 @@
 
   var form = document.getElementById("request-form");
   var status = document.getElementById("form-status");
+  var thanksModal = document.getElementById("thanks-modal");
 
   function setStatus(text, isError) {
     if (!status) return;
     status.textContent = text;
     status.classList.toggle("form__status--err", !!isError);
+  }
+
+  function showThanks() {
+    if (thanksModal && typeof thanksModal.showModal === "function") {
+      setStatus("");
+      thanksModal.showModal();
+    } else {
+      setStatus("Спасибо за обращение! Мы свяжемся с вами в ближайшее время.");
+    }
+  }
+
+  if (thanksModal) {
+    thanksModal.addEventListener("click", function (e) {
+      if (e.target === thanksModal || (e.target.closest && e.target.closest("[data-close-modal]"))) {
+        thanksModal.close();
+      }
+    });
   }
 
   function mailtoFallback(data) {
@@ -256,8 +274,8 @@
       })
         .then(function (r) {
           if (!r.ok) throw new Error("bad status " + r.status);
-          setStatus("Заявка отправлена. Отвечу в течение дня — напишу на указанный контакт.");
           resetForm();
+          showThanks();
         })
         .catch(function () {
           setStatus("Не удалось отправить. Напишите, пожалуйста, напрямую по контактам слева.", true);
