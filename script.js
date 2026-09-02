@@ -86,7 +86,7 @@
   // URL облачной функции-прокси (Yandex Cloud). Пустая строка = отправки нет,
   // кнопка просто открывает письмо (mailto) как запасной вариант.
   var FORM_ENDPOINT = "";
-  var MAIL_TO = "[EMAIL]"; // запасной адрес для mailto, пока нет endpoint
+  var MAIL_TO = "OlFamS@yandex.ru"; // запасной адрес для mailto, пока нет endpoint
 
   var form = document.getElementById("request-form");
   var status = document.getElementById("form-status");
