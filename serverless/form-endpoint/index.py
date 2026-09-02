@@ -139,11 +139,19 @@ def _send_email(subject, text, attachments):
 
 
 def handler(event, context):
-    if (event or {}).get("httpMethod") == "OPTIONS":
+    event = event or {}
+    if event.get("httpMethod") == "OPTIONS":
         return _resp(200, True, "ok")
 
+    body = event.get("body") or ""
+    if event.get("isBase64Encoded"):
+        try:
+            body = base64.b64decode(body).decode("utf-8")
+        except Exception:
+            return _resp(400, False, "bad body encoding")
+
     try:
-        data = json.loads((event or {}).get("body") or "{}")
+        data = json.loads(body or "{}")
     except Exception:
         return _resp(400, False, "bad json")
 
