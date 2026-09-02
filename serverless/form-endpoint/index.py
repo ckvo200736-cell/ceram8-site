@@ -11,6 +11,9 @@ Ceram8 — приём заявок с формы сайта.
                             --> Telegram Bot API   (если задан BOT_TOKEN)
                             --> SMTP -> почтовый ящик (если задан SMTP_HOST)
 
+Приложенные фото приходят внутри JSON (сжаты на клиенте, base64) и добавляются
+вложениями в письмо. В Telegram уходит только пометка «Фото: N шт.».
+
 Переменные окружения (задаются в настройках функции):
 
   Общие:
@@ -35,12 +38,16 @@ Ceram8 — приём заявок с формы сайта.
 import os
 import ssl
 import json
+import base64
 import smtplib
 import urllib.parse
 import urllib.request
 from email.message import EmailMessage
 
 TG_URL = "https://api.telegram.org/bot%s/sendMessage"
+
+MAX_IMAGES = 3
+MAX_TOTAL_BYTES = 6 * 1024 * 1024  # суммарный предел вложений
 
 
 def _resp(code, ok, msg):
@@ -60,6 +67,32 @@ def _clip(value, limit):
     return str(value or "").strip()[:limit]
 
 
+def _decode_images(raw_list):
+    """[{name, type, data(base64)}] -> [(filename, subtype, bytes)]"""
+    out = []
+    total = 0
+    if not isinstance(raw_list, list):
+        return out
+    for item in raw_list[:MAX_IMAGES]:
+        if not isinstance(item, dict):
+            continue
+        b64 = item.get("data") or ""
+        try:
+            blob = base64.b64decode(b64, validate=False)
+        except Exception:
+            continue
+        if not blob:
+            continue
+        total += len(blob)
+        if total > MAX_TOTAL_BYTES:
+            break
+        name = _clip(item.get("name"), 80) or "image.jpg"
+        mime = _clip(item.get("type"), 40) or "image/jpeg"
+        subtype = mime.split("/")[-1] if "/" in mime else "jpeg"
+        out.append((name, subtype, blob))
+    return out
+
+
 def _send_telegram(text):
     token = os.environ.get("BOT_TOKEN")
     chat_id = os.environ.get("CHAT_ID")
@@ -74,7 +107,7 @@ def _send_telegram(text):
     return True
 
 
-def _send_email(subject, text):
+def _send_email(subject, text, attachments):
     host = os.environ.get("SMTP_HOST")
     if not host:
         return None
@@ -89,14 +122,16 @@ def _send_email(subject, text):
     msg["From"] = mail_from
     msg["To"] = mail_to
     msg.set_content(text)
+    for filename, subtype, blob in attachments:
+        msg.add_attachment(blob, maintype="image", subtype=subtype, filename=filename)
 
     ctx = ssl.create_default_context()
     if port == 465:
-        with smtplib.SMTP_SSL(host, port, timeout=10, context=ctx) as s:
+        with smtplib.SMTP_SSL(host, port, timeout=15, context=ctx) as s:
             s.login(user, password)
             s.send_message(msg)
     else:
-        with smtplib.SMTP(host, port, timeout=10) as s:
+        with smtplib.SMTP(host, port, timeout=15) as s:
             s.starttls(context=ctx)
             s.login(user, password)
             s.send_message(msg)
@@ -128,6 +163,7 @@ def handler(event, context):
     order_type = _clip(data.get("type"), 200)
     message = _clip(data.get("message"), 4000)
     consent_at = _clip(data.get("consent_at"), 40)
+    attachments = _decode_images(data.get("images"))
 
     text = (
         "Заявка с сайта Ceram8\n\n"
@@ -135,16 +171,25 @@ def handler(event, context):
         "Контакт: %s\n"
         "Тип заказа: %s\n"
         "Сообщение: %s\n"
+        "Фото: %s\n"
         "Согласие на обработку ПДн: да (%s)"
-    ) % (name, contact, order_type or "—", message or "—", consent_at or "—")
+    ) % (
+        name,
+        contact,
+        order_type or "—",
+        message or "—",
+        ("%d шт. (во вложении письма)" % len(attachments)) if attachments else "нет",
+        consent_at or "—",
+    )
 
     sent_any = False
     errors = []
-    for label, fn in (("telegram", lambda: _send_telegram(text)),
-                      ("email", lambda: _send_email("Заявка с сайта Ceram8", text))):
+    for label, fn in (
+        ("telegram", lambda: _send_telegram(text)),
+        ("email", lambda: _send_email("Заявка с сайта Ceram8", text, attachments)),
+    ):
         try:
-            result = fn()
-            if result:
+            if fn():
                 sent_any = True
         except Exception as e:  # noqa: BLE001
             errors.append("%s: %s" % (label, e))
