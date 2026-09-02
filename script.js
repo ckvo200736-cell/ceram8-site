@@ -4,22 +4,18 @@
 
   var root = document.documentElement;
 
-  /* ---------- Переключатель дизайн-концепций ---------- */
+  /* ---------- Переключатель дизайн-концепций (панель скрыта) ----------
+     Активная концепция задаётся атрибутом data-design в <html>.
+     Кнопки работают, только если вернуть панель (убрать hidden у .switcher);
+     сохранённый в браузере выбор при загрузке НЕ применяется. */
   var buttons = document.querySelectorAll("[data-set-design]");
-  var STORAGE_KEY = "ceram8-design";
 
   function applyDesign(id) {
     root.setAttribute("data-design", id);
     buttons.forEach(function (b) {
       b.classList.toggle("is-active", b.getAttribute("data-set-design") === id);
     });
-    try { localStorage.setItem(STORAGE_KEY, id); } catch (e) {}
   }
-
-  try {
-    var saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) applyDesign(saved);
-  } catch (e) {}
 
   buttons.forEach(function (b) {
     b.addEventListener("click", function () {
