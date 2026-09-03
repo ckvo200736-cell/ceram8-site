@@ -464,10 +464,12 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .contacts__list a.link-ext { color: var(--text); text-decoration: underline; }
 .link-ext:hover { color: var(--accent); }
 .link-ext__icon {
-  width: .8em;
-  height: .8em;
+  display: inline-block;
+  width: .82em;
+  height: .82em;
   margin-left: .3em;
-  vertical-align: -.06em;
+  vertical-align: -.08em;
+  flex: none;
 }
 
 .form {
