@@ -369,8 +369,15 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .reviews__nav--next { right: -12px; }
 .reviews__nav:hover { color: var(--accent); border-color: var(--accent); }
 .reviews__nav:disabled { opacity: .3; cursor: default; box-shadow: none; }
+/* подсказка для тач-устройств (там, где стрелок нет) */
+.reviews__hint {
+  margin: 4px 0 14px;
+  font-size: .8rem;
+  color: var(--muted);
+}
 @media (min-width: 700px) and (pointer: fine) {
   .reviews__nav { display: flex; }
+  .reviews__hint { display: none; }
 }
 .ticks { list-style: none; padding: 0; margin: 0 0 1.6em; }
 .ticks li { position: relative; padding-left: 28px; margin-bottom: .6em; }
@@ -447,6 +454,21 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .contacts__list span:first-child { color: var(--muted); }
 .contacts__list a { text-decoration: none; font-weight: 600; }
 .contacts__avito { font-size: .9rem; color: var(--muted); }
+
+/* внешние ссылки — подчёркивание + иконка «открыть в новой вкладке» */
+.link-ext {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.contacts__list a.link-ext { color: var(--text); text-decoration: underline; }
+.link-ext:hover { color: var(--accent); }
+.link-ext__icon {
+  width: .8em;
+  height: .8em;
+  margin-left: .3em;
+  vertical-align: -.06em;
+}
 
 .form {
   background: var(--bg);
@@ -651,7 +673,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   .grid-gallery::-webkit-scrollbar { height: 5px; }
   .grid-gallery::-webkit-scrollbar-track { background: transparent; }
   .grid-gallery::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
-  .gallery__hint::before { content: "Листайте вбок. "; }
+  .gallery__hint::before { content: "Листайте вправо → "; }
 }
 
 /* ==========================================================================
