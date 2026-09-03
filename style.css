@@ -347,7 +347,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 /* стрелки листания: аккуратные круглые кнопки, только шире 700px с мышью */
 .reviews__nav {
   position: absolute;
-  top: 42%;
+  top: 50%;
   transform: translateY(-50%);
   z-index: 2;
   display: none;
@@ -355,17 +355,16 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   justify-content: center;
   width: 38px;
   height: 38px;
+  padding: 0;
   border-radius: 50%;
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--text);
-  font: inherit;
-  font-size: 1.25rem;
-  line-height: 1;
   cursor: pointer;
   box-shadow: 0 6px 18px -8px rgba(0,0,0,.35);
   transition: color .15s ease, border-color .15s ease;
 }
+.reviews__nav svg { display: block; width: 17px; height: 17px; }
 .reviews__nav--prev { left: -12px; }
 .reviews__nav--next { right: -12px; }
 .reviews__nav:hover { color: var(--accent); border-color: var(--accent); }
