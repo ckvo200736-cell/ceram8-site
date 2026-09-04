@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /serverless/
+Disallow: /README.md
+Disallow: /PHOTO-CREDITS.md
+
+Sitemap: https://ceram8.ru/sitemap.xml
