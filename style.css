@@ -838,8 +838,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
    Отдельные посадочные на общих токенах и классах лендинга.
    ========================================================================== */
 .subhead { padding-bottom: 0; }
-.subhead .wrap { max-width: 820px; }
-.subhead h1 { margin-top: .2em; }
+.subhead h1 { margin-top: .2em; max-width: 20ch; }
 .subhead .lead { max-width: 62ch; }
 
 .crumbs { font-size: .8rem; color: var(--muted); margin: 0 0 1.6em; }
