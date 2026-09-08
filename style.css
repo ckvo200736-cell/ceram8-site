@@ -885,6 +885,11 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 .faq__item[open] summary::after { content: "\2013"; }
 .faq__item p { margin: 0 0 16px; color: var(--muted); font-size: .95rem; }
 
+/* короткий список отзывов на подстранице: стопка на телефоне, 3 в ряд на десктопе */
+.review-list { display: grid; gap: clamp(12px, 2vw, 18px); margin-bottom: clamp(18px, 3vw, 28px); }
+@media (min-width: 760px) { .review-list { grid-template-columns: repeat(3, 1fr); } }
+.review-list .review { flex: initial; }
+
 /* ---------- уважение к prefers-reduced-motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
