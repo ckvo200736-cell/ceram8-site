@@ -97,32 +97,6 @@ p { margin: 0 0 1em; }
 .btn--ghost { border-color: var(--line); color: var(--text); background: transparent; }
 .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ---------- Переключатель концепций (временный, для выбора дизайна) ---------- */
-.switcher[hidden] { display: none; }
-.switcher {
-  position: relative;
-  z-index: 100;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  padding: 10px var(--gap);
-  background: #1e1a17;
-  color: #f4ede4;
-  font-size: .82rem;
-}
-.switcher__label { opacity: .7; margin-right: 4px; }
-.switcher__btn {
-  font: inherit;
-  padding: 7px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.25);
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-}
-.switcher__btn.is-active { background: #f4ede4; color: #1e1a17; border-color: #f4ede4; }
-
 /* ---------- Шапка ---------- */
 .site-header {
   position: sticky;

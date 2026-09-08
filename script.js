@@ -2,28 +2,6 @@
 (function () {
   "use strict";
 
-  var root = document.documentElement;
-
-  /* ---------- Переключатель дизайн-концепций (панель скрыта) ----------
-     Активная концепция задаётся атрибутом data-design в <html>.
-     Кнопки работают, только если вернуть панель (убрать hidden у .switcher);
-     сохранённый в браузере выбор при загрузке НЕ применяется. */
-  var buttons = document.querySelectorAll("[data-set-design]");
-
-  function applyDesign(id) {
-    root.setAttribute("data-design", id);
-    buttons.forEach(function (b) {
-      b.classList.toggle("is-active", b.getAttribute("data-set-design") === id);
-    });
-  }
-
-  buttons.forEach(function (b) {
-    b.addEventListener("click", function () {
-      applyDesign(b.getAttribute("data-set-design"));
-      window.scrollTo({ top: 0, behavior: "auto" });
-    });
-  });
-
   /* ---------- Мобильное меню ---------- */
   var header = document.querySelector(".site-header");
   var navToggle = document.querySelector(".nav-toggle");
