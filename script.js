@@ -78,6 +78,21 @@
     syncNav();
   }
 
+  /* ---------- Цели Яндекс.Метрики ---------- */
+  var YM_ID = 112387627;
+  function ymGoal(name) {
+    if (typeof window.ym === "function") {
+      try { window.ym(YM_ID, "reachGoal", name); } catch (e) {}
+    }
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (/avito\.ru/i.test(href)) ymGoal("avito_click");
+    else if (/^mailto:/i.test(href)) ymGoal("email_click");
+  });
+
   /* ---------- Год в подвале ---------- */
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
@@ -274,6 +289,7 @@
       })
         .then(function (r) {
           if (!r.ok) throw new Error("bad status " + r.status);
+          ymGoal("form_sent");
           resetForm();
           showThanks();
         })
