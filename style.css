@@ -837,9 +837,20 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
    SEO-ПОДСТРАНИЦЫ  (/restoranam/, /tarelka-pod-doshik/)
    Отдельные посадочные на общих токенах и классах лендинга.
    ========================================================================== */
-.subhead { padding-top: clamp(24px, 5vw, 52px); padding-bottom: 0; }
+.subhead { padding-top: clamp(24px, 5vw, 52px); padding-bottom: clamp(20px, 4vw, 40px); }
 .subhead h1 { margin-top: .2em; max-width: 20ch; }
-.subhead .lead { max-width: 62ch; }
+.subhead .lead { max-width: 62ch; margin-bottom: 0; }
+
+/* фон верхнего блока — как hero на главной: затемнённое фото поверх запасной текстуры */
+[data-design="3"] .subhead {
+  background-image:
+    linear-gradient(180deg, rgba(14,10,7,.72) 0%, rgba(14,10,7,.9) 62%, var(--bg) 100%),
+    var(--hero-photo),
+    var(--hero-fallback);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 .crumbs { font-size: .8rem; color: var(--muted); margin: 0 0 1.6em; }
 .crumbs a { color: var(--muted); text-decoration: none; }
