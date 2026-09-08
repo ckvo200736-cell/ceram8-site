@@ -833,6 +833,58 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
 [data-design="3"] .contacts { order: 7; }
 [data-design="3"] .reviews { order: 8; }
 
+/* ==========================================================================
+   SEO-ПОДСТРАНИЦЫ  (/restoranam/, /tarelka-pod-doshik/)
+   Отдельные посадочные на общих токенах и классах лендинга.
+   ========================================================================== */
+.subhead { padding-bottom: 0; }
+.subhead .wrap { max-width: 820px; }
+.subhead h1 { margin-top: .2em; }
+.subhead .lead { max-width: 62ch; }
+
+.crumbs { font-size: .8rem; color: var(--muted); margin: 0 0 1.6em; }
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+
+.prose { max-width: 720px; }
+.prose > p { color: var(--muted); }
+
+.sp-intro__inner { display: grid; gap: clamp(24px, 5vw, 48px); align-items: center; }
+@media (min-width: 800px) {
+  .sp-intro__inner { grid-template-columns: 1.05fr 0.95fr; }
+}
+
+.sp-form { background: var(--surface); border-top: 1px solid var(--line); }
+
+/* аккордеон вопросов-ответов */
+.faq { display: grid; gap: 10px; max-width: 760px; }
+.faq__item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 2px 18px;
+}
+[data-design="3"] .faq__item { background: var(--surface-2); }
+.faq__item summary {
+  cursor: pointer;
+  padding: 15px 0;
+  font-family: var(--font-head);
+  font-weight: var(--head-weight);
+  font-size: 1rem;
+  list-style: none;
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after {
+  content: "+";
+  float: right;
+  margin-left: 12px;
+  color: var(--accent);
+  font-size: 1.15em;
+  line-height: 1.3;
+}
+.faq__item[open] summary::after { content: "\2013"; }
+.faq__item p { margin: 0 0 16px; color: var(--muted); font-size: .95rem; }
+
 /* ---------- уважение к prefers-reduced-motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
