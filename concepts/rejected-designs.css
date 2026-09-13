@@ -1,0 +1,110 @@
+/* ==========================================================================
+   АРХИВ — отклонённые дизайн-концепции 1 и 2
+   Извлечено из основного style.css при уборке проекта (концепция 3
+   «Тёмный премиум» выбрана и работает на сайте, эти правила больше
+   никуда не подключены). Это готовый на момент отказа CSS, но он
+   рассчитан на переменные и селекторы из основного style.css — сам по
+   себе, без него, не работает. Оставлено для истории/референса.
+
+   Контекст выбора — см. concepts/README.md.
+   ========================================================================== */
+
+/* ==========================================================================
+   КОНЦЕПЦИЯ 1 — ТЁПЛЫЙ МИНИМАЛИЗМ  (палитра по умолчанию, лёгкие уточнения)
+   ========================================================================== */
+[data-design="1"] {
+  --bg: #f5efe6;
+  --surface: #fdfaf5;
+  --surface-2: #efe4d4;
+  --text: #2f271f;
+  --muted: #5c4b3b;
+  --accent: #a25a2f;
+  --line: #e0d5c4;
+
+  /* Фактура на фоне всего сайта. Своё изображение — положите в images/ и
+     поправьте путь; убрать фактуру совсем — замените значение на none. */
+  --site-photo: url("images/texture.jpg");
+}
+[data-design="1"] .hero { padding-top: clamp(48px, 10vw, 110px); }
+[data-design="1"] .section__sub { max-width: 44ch; }
+
+/* Светлая фактура штукатурки на фоне всего сайта.
+   Закреплённый слой во всю ширину окна: не двигается при прокрутке, работает
+   на мобильных (в отличие от background-attachment: fixed), текст скользит поверх. */
+[data-design="1"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(246,240,231,.88), rgba(246,240,231,.9)),
+    var(--site-photo) center center / cover no-repeat;
+}
+/* Панели, которые в этой концепции лежат на фактуре — делаем полупрозрачными,
+   чтобы она слегка просвечивала, а не обрывалась прямоугольником. */
+[data-design="1"] .clients,
+[data-design="1"] .contacts,
+[data-design="1"] .firing { background: rgba(251,247,241,.85); }
+[data-design="1"] .site-header { background: rgba(245,239,230,.92); }
+@supports (backdrop-filter: blur(6px)) or (-webkit-backdrop-filter: blur(6px)) {
+  [data-design="1"] .site-header {
+    background: rgba(245,239,230,.72);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* ==========================================================================
+   КОНЦЕПЦИЯ 2 — ЖУРНАЛЬНЫЙ / РЕДАКЦИОННЫЙ
+   Крупная типографика, жёсткие линии, асимметрия, почти без скруглений
+   ========================================================================== */
+[data-design="2"] {
+  --bg: #f2efe6;
+  --surface: #ffffff;
+  --surface-2: #e7e2d4;
+  --text: #141210;
+  --muted: #55503f;
+  --accent: #c6402a;
+  --accent-ink: #fff;
+  --line: #141210;
+  --radius: 0px;
+  --tile-radius: 0px;
+  --font-head: "Times New Roman", Georgia, serif;
+  --h1: clamp(2.6rem, 9vw, 5.4rem);
+  --h2: clamp(1.9rem, 5.5vw, 3.4rem);
+  --head-weight: 700;
+  --head-spacing: -0.02em;
+}
+[data-design="2"] body { font-size: 17px; }
+[data-design="2"] h1, [data-design="2"] h2 { line-height: 1.02; }
+[data-design="2"] .site-header { border-bottom-width: 2px; }
+[data-design="2"] .kicker { color: var(--text); border-top: 2px solid var(--text); padding-top: 8px; display: inline-block; }
+[data-design="2"] .section { border-top: 2px solid var(--text); }
+[data-design="2"] .hero { border-top: 0; }
+[data-design="2"] .section__head { max-width: 900px; }
+[data-design="2"] .btn { border-radius: 0; }
+[data-design="2"] .btn--primary { border-color: var(--text); }
+[data-design="2"] .btn--ghost { border-color: var(--text); }
+[data-design="2"] .ware { border-radius: 0; box-shadow: none; border: 2px solid var(--text); background: var(--surface); }
+[data-design="2"] .ware--set { border-radius: 0; }
+[data-design="2"] .photo-frame { border-radius: 0; box-shadow: none; border: 2px solid var(--text); }
+[data-design="2"] .ware__rim { fill: #f0eadd; stroke: var(--text); stroke-width: 2; }
+[data-design="2"] .ware__well { fill: #fff; stroke: var(--text); }
+[data-design="2"] .tile { border: 2px solid var(--text); }
+[data-design="2"] .clients__card,
+[data-design="2"] .step,
+[data-design="2"] .review,
+[data-design="2"] .form { border-width: 2px; border-radius: 0; }
+[data-design="2"] .step__num { border-radius: 0; }
+[data-design="2"] .ticks li::before { border-radius: 0; transform: none; }
+[data-design="2"] .contacts__list li { border-bottom-width: 2px; }
+
+/* асимметрия на широких экранах */
+@media (min-width: 1000px) {
+  [data-design="2"] .hero__inner { grid-template-columns: 1.4fr 0.6fr; }
+  [data-design="2"] .custom__inner { grid-template-columns: 1.35fr 0.65fr; }
+  [data-design="2"] .horeca__inner { grid-template-columns: 0.6fr 1.4fr; }
+  [data-design="2"] .section__head { padding-right: 20%; }
+  [data-design="2"] .grid-gallery > .tile--a { grid-column: span 2; grid-row: span 2; }
+  [data-design="2"] .grid-gallery > .tile--f { grid-column: span 2; }
+}
