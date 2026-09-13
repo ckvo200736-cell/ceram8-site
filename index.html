@@ -113,13 +113,11 @@
         <p class="hero__note">Работаю с частными заказчиками и с компаниями по договору.</p>
       </div>
       <div class="hero__media">
-        <figure class="photo-frame photo-frame--hero" style="--img:url('images/panda.jpg')">
-          <svg viewBox="0 0 220 220" class="photo-frame__ph" role="img" aria-label="Керамика ручной работы">
-            <circle cx="110" cy="110" r="100" class="ware__rim"/>
-            <circle cx="110" cy="110" r="68" class="ware__well"/>
-            <path d="M78 118c12 18 52 18 64 0" class="ware__brush"/>
-            <circle cx="110" cy="86" r="10" class="ware__dot"/>
-          </svg>
+        <figure class="photo-frame photo-frame--hero">
+          <picture>
+            <source srcset="images/panda.webp" type="image/webp">
+            <img class="photo-frame__img" src="images/panda.jpg" width="993" height="1162" alt="Керамическая ваза-контейнер в виде панды для хранения мелочей, ручная роспись" fetchpriority="high" decoding="async">
+          </picture>
         </figure>
       </div>
     </div>
@@ -133,17 +131,83 @@
         <p class="section__sub">Тарелки, вазы, светильники, сувениры, любая посуда — почти любое изделие на заказ. Часть работ индивидуальные, часть — тиражи для заведений. Каждый предмет расписан вручную.</p>
       </div>
       <div class="grid-gallery">
-        <figure class="tile tile--a" style="--img:url('images/kot-ramen.jpg')"><figcaption>Тарелка «под дошик»: «Чёрный кот, обедающий»</figcaption></figure>
-        <figure class="tile tile--b" style="--img:url('images/panda.jpg')"><figcaption>Ваза «Панда» для хранения</figcaption></figure>
-        <figure class="tile tile--c" style="--img:url('images/bludca-nabor.jpg')"><figcaption>Комплект блюдец в цветочек, тираж от 5 штук</figcaption></figure>
-        <figure class="tile tile--d" style="--img:url('images/ryba.jpg')"><figcaption>Керамическая рыба</figcaption></figure>
-        <figure class="tile tile--e" style="--img:url('images/pitomcy.jpg')"><figcaption>Фигурки питомцев по вашему фото</figcaption></figure>
-        <figure class="tile tile--k" style="--img:url('images/svetilnik.jpg')"><figcaption>Керамический светильник «Удильщик»</figcaption></figure>
-        <figure class="tile tile--f" style="--img:url('images/rakovina.jpg')"><figcaption>Раковина ручной работы с краном</figcaption></figure>
-        <figure class="tile tile--g" style="--img:url('images/taro.jpg')"><figcaption>Набор керамических карт Таро</figcaption></figure>
-        <figure class="tile tile--h" style="--img:url('images/chaynik.jpg')"><figcaption>Чайник, сине-белая роспись</figcaption></figure>
-        <figure class="tile tile--i" style="--img:url('images/hryushka.jpg')"><figcaption>Конфетница «Хрюшка»</figcaption></figure>
-        <figure class="tile tile--j" style="--img:url('images/korova.jpg')"><figcaption>Ёмкость для хранения «Корова»</figcaption></figure>
+        <figure class="tile tile--a">
+          <picture>
+            <source srcset="images/kot-ramen.webp" type="image/webp">
+            <img class="tile__img" src="images/kot-ramen.jpg" width="997" height="1135" alt="Керамическая тарелка ручной работы с росписью: чёрный кот с палочками ест лапшу из мисочки" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Тарелка «под дошик»: «Чёрный кот, обедающий»</figcaption>
+        </figure>
+        <figure class="tile tile--b">
+          <picture>
+            <source srcset="images/panda.webp" type="image/webp">
+            <img class="tile__img" src="images/panda.jpg" width="993" height="1162" alt="Керамическая ваза-контейнер в виде панды для хранения мелочей, ручная роспись" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Ваза «Панда» для хранения</figcaption>
+        </figure>
+        <figure class="tile tile--c">
+          <picture>
+            <source srcset="images/bludca-nabor.webp" type="image/webp">
+            <img class="tile__img" src="images/bludca-nabor.jpg" width="994" height="840" alt="Комплект керамических блюдец с цветочной росписью, изготовленный партией для заведения" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Комплект блюдец в цветочек, тираж от 5 штук</figcaption>
+        </figure>
+        <figure class="tile tile--d">
+          <picture>
+            <source srcset="images/ryba.webp" type="image/webp">
+            <img class="tile__img" src="images/ryba.jpg" width="1080" height="1440" alt="Керамическая скульптура рыбы ручной лепки с рельефной чешуёй" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Керамическая рыба</figcaption>
+        </figure>
+        <figure class="tile tile--e">
+          <picture>
+            <source srcset="images/pitomcy.webp" type="image/webp">
+            <img class="tile__img" src="images/pitomcy.jpg" width="990" height="877" alt="Керамические фигурки домашних питомцев, слепленные по фотографии заказчика" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Фигурки питомцев по вашему фото</figcaption>
+        </figure>
+        <figure class="tile tile--k">
+          <picture>
+            <source srcset="images/svetilnik.webp" type="image/webp">
+            <img class="tile__img" src="images/svetilnik.jpg" width="1027" height="1280" alt="Керамический настольный светильник в виде рыбы-удильщика со светящейся приманкой" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Керамический светильник «Удильщик»</figcaption>
+        </figure>
+        <figure class="tile tile--f">
+          <picture>
+            <source srcset="images/rakovina.webp" type="image/webp">
+            <img class="tile__img" src="images/rakovina.jpg" width="657" height="823" alt="Керамическая накладная раковина ручной работы со смесителем, встроенная в столешницу" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Раковина ручной работы с краном</figcaption>
+        </figure>
+        <figure class="tile tile--g">
+          <picture>
+            <source srcset="images/taro.webp" type="image/webp">
+            <img class="tile__img" src="images/taro.jpg" width="985" height="862" alt="Набор керамических карт Таро с рельефными рисунками и символами на каждой карте" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Набор керамических карт Таро</figcaption>
+        </figure>
+        <figure class="tile tile--h">
+          <picture>
+            <source srcset="images/chaynik.webp" type="image/webp">
+            <img class="tile__img" src="images/chaynik.jpg" width="987" height="811" alt="Керамический чайник с сине-белой цветочной росписью" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Чайник, сине-белая роспись</figcaption>
+        </figure>
+        <figure class="tile tile--i">
+          <picture>
+            <source srcset="images/hryushka.webp" type="image/webp">
+            <img class="tile__img" src="images/hryushka.jpg" width="991" height="1165" alt="Керамическая конфетница в виде поросёнка с крышкой для мелких сладостей" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Конфетница «Хрюшка»</figcaption>
+        </figure>
+        <figure class="tile tile--j">
+          <picture>
+            <source srcset="images/korova.webp" type="image/webp">
+            <img class="tile__img" src="images/korova.jpg" width="994" height="1050" alt="Керамическая ёмкость для хранения в виде коровы с крышкой" loading="lazy" decoding="async">
+          </picture>
+          <figcaption>Ёмкость для хранения «Корова»</figcaption>
+        </figure>
       </div>
       <p class="gallery__hint">Все фото — реальные работы мастерской.</p>
     </div>
@@ -153,13 +217,11 @@
   <section id="custom" class="section custom">
     <div class="wrap custom__inner">
       <div class="custom__media">
-        <figure class="photo-frame" style="--img:url('images/kot-ramen.jpg')">
-          <svg viewBox="0 0 220 220" class="photo-frame__ph" role="img" aria-label="Тарелка с рисунком заказчика">
-            <circle cx="110" cy="110" r="100" class="ware__rim"/>
-            <circle cx="110" cy="110" r="72" class="ware__well"/>
-            <path d="M78 92l14 40 12-26 10 30 16-44" class="ware__brush"/>
-            <path d="M74 138c16 14 56 14 72 0" class="ware__brush"/>
-          </svg>
+        <figure class="photo-frame">
+          <picture>
+            <source srcset="images/kot-ramen.webp" type="image/webp">
+            <img class="photo-frame__img" src="images/kot-ramen.jpg" width="997" height="1135" alt="Керамическая тарелка ручной работы с росписью: чёрный кот с палочками ест лапшу из мисочки" loading="lazy" decoding="async">
+          </picture>
         </figure>
       </div>
       <div class="custom__text">
@@ -209,15 +271,11 @@
         <a href="restoranam/" class="btn btn--ghost">Подробнее для ресторанов и кафе</a>
       </div>
       <div class="horeca__media">
-        <figure class="photo-frame" style="--img:url('images/bludca-nabor.jpg')">
-          <svg viewBox="0 0 260 200" class="photo-frame__ph" role="img" aria-label="Сет посуды">
-            <circle cx="70" cy="110" r="60" class="ware__rim"/>
-            <circle cx="70" cy="110" r="40" class="ware__well"/>
-            <circle cx="176" cy="96" r="44" class="ware__rim"/>
-            <circle cx="176" cy="96" r="28" class="ware__well"/>
-            <path d="M150 150h72" class="ware__brush"/>
-            <text x="176" y="102" class="ware__mark">C8</text>
-          </svg>
+        <figure class="photo-frame">
+          <picture>
+            <source srcset="images/bludca-nabor.webp" type="image/webp">
+            <img class="photo-frame__img" src="images/bludca-nabor.jpg" width="994" height="840" alt="Комплект керамических блюдец с цветочной росписью, изготовленный партией для заведения" loading="lazy" decoding="async">
+          </picture>
         </figure>
       </div>
     </div>

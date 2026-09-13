@@ -173,27 +173,10 @@ p { margin: 0 0 1em; }
 .hero__note { font-size: .9rem; color: var(--muted); margin: 0; }
 
 .hero__media { display: flex; justify-content: center; width: 100%; }
-.ware {
-  flex: none;
-  align-self: center;
-  width: min(88vw, 420px);
-  aspect-ratio: 1 / 1;
-  background: var(--surface);
-  border-radius: 50%;
-  padding: 6%;
-  box-shadow: 0 30px 60px -30px rgba(58,47,40,.45);
-}
-.ware--set { aspect-ratio: 13 / 10; border-radius: var(--radius); }
-.ware svg { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; overflow: visible; }
-.ware--set svg { aspect-ratio: 13 / 10; }
-.ware__rim { fill: var(--surface-2); stroke: var(--line); stroke-width: 2; }
-.ware__well { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
-.ware__brush { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
-.ware__dot { fill: var(--accent); }
-.ware__mark { fill: var(--accent); font-family: var(--font-head); font-size: 22px; text-anchor: middle; font-weight: 700; }
 
 /* ---------- Фото-рамка в блоках «Ваш рисунок» и «Ресторанам» ----------
-   Показывает фото из --img; пока фото нет — виден рисованный плейсхолдер. */
+   Рамка задаёт пропорции и скругление; внутри — настоящий <img> (через
+   <picture> с webp), растянутый на всю рамку через object-fit: cover. */
 .photo-frame {
   position: relative;
   width: 100%;
@@ -207,21 +190,13 @@ p { margin: 0 0 1em; }
 }
 .photo-frame--wide { aspect-ratio: 13 / 10; }
 .photo-frame--hero { max-width: 460px; aspect-ratio: 4 / 5; }
-.photo-frame__ph {
+.photo-frame__img {
   position: absolute;
   inset: 0;
-  width: 70%;
-  height: 70%;
-  margin: auto;
-  overflow: visible;
-}
-.photo-frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--img, none);
-  background-size: cover;
-  background-position: center;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ---------- Галерея ---------- */
@@ -240,12 +215,18 @@ p { margin: 0 0 1em; }
   display: flex;
   align-items: flex-end;
   color: #fff;
-  background-image: var(--img, none);
-  background-size: cover;
-  background-position: center;
 }
-/* второй слой — глиняный градиент-плейсхолдер, виден пока нет фото
-   (добавьте на <figure> атрибут style="--img:url('images/1.jpg')") */
+.tile__img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* второй слой — глиняный градиент под фото; подстраховка на случай,
+   если файл фото не загрузится (img не перекроет это z-index:-1 пятно) */
 .tile::before {
   content: "";
   position: absolute;
@@ -364,7 +345,6 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   border-radius: 3px;
   transform: rotate(45deg);
 }
-.ware--plate { background: var(--surface); }
 
 /* ---------- Физ / юр лица ---------- */
 .clients { background: var(--surface); }
@@ -693,13 +673,7 @@ code { background: var(--surface-2); padding: 2px 6px; border-radius: 6px; font-
   background-position: center;
   background-repeat: no-repeat;
 }
-[data-design="3"] .hero .ware { box-shadow: 0 40px 90px -30px rgba(0,0,0,.9); }
-
-[data-design="3"] .ware { box-shadow: 0 40px 80px -40px rgba(0,0,0,.8); background: var(--surface); }
 [data-design="3"] .photo-frame { box-shadow: 0 40px 80px -40px rgba(0,0,0,.8); }
-[data-design="3"] .ware__rim { fill: #2b231b; stroke: #4a3d2d; }
-[data-design="3"] .ware__well { fill: #221b14; stroke: #4a3d2d; }
-[data-design="3"] .ware__brush { stroke: var(--accent); }
 [data-design="3"] .btn--primary { box-shadow: 0 10px 30px -12px rgba(201,162,75,.5); }
 [data-design="3"] .btn--ghost { border-color: var(--muted); }
 [data-design="3"] .tile figcaption { background: linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,0)); }

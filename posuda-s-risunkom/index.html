@@ -118,13 +118,11 @@
           <li>Фигурки и сувениры по вашему фото</li>
         </ul>
       </div>
-      <figure class="photo-frame" style="--img:url('../images/kot-ramen.jpg')">
-        <svg viewBox="0 0 220 220" class="photo-frame__ph" role="img" aria-label="Посуда с рисунком заказчика">
-          <circle cx="110" cy="110" r="100" class="ware__rim"/>
-          <circle cx="110" cy="110" r="72" class="ware__well"/>
-          <path d="M78 92l14 40 12-26 10 30 16-44" class="ware__brush"/>
-          <path d="M74 138c16 14 56 14 72 0" class="ware__brush"/>
-        </svg>
+      <figure class="photo-frame">
+        <picture>
+          <source srcset="../images/kot-ramen.webp" type="image/webp">
+          <img class="photo-frame__img" src="../images/kot-ramen.jpg" width="997" height="1135" alt="Керамическая тарелка ручной работы с росписью: чёрный кот с палочками ест лапшу из мисочки" loading="lazy" decoding="async">
+        </picture>
       </figure>
     </div>
   </section>
